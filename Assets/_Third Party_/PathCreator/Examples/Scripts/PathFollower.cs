@@ -27,9 +27,7 @@ namespace PathCreation.Examples
                 distanceTravelled += speed * Time.deltaTime;
                 transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
                 transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
-                transform.rotation = Quaternion.LookRotation(transform.right, transform.forward);
-                //transform.rotation = transform.rotation * Quaternion.AngleAxis(-90f, transform.up);
-                //transform.rotation = transform.rotation * Quaternion.AngleAxis(-90f, transform.forward);
+                //transform.rotation = Quaternion.LookRotation(Vector3.forward, transform.forward);
             }
         }
 

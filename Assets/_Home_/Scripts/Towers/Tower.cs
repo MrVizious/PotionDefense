@@ -1,0 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using ExtensionMethods;
+using Sirenix.OdinInspector;
+using System.Linq;
+
+public class Tower : MonoBehaviour
+{
+    public TowerData data;
+    [SerializeField]
+    private SpriteRenderer radiusRenderer;
+
+    private void Start()
+    {
+        //SpriteRenderer[] renderers = GetComponentInChildren<SpriteRenderer>().Where(go => go.gameObject != this.gameObject);
+        radiusRenderer = this.GetComponentInChildrenExcludingParent<SpriteRenderer>();
+        UpdateRadius();
+    }
+
+    [Button]
+    public void Evolve()
+    {
+        if (data.nextLevel == null)
+        {
+            Debug.Log("No more levels to evolve to");
+            return;
+        }
+        data = data.nextLevel;
+        UpdateRadius();
+    }
+
+    private void UpdateRadius()
+    {
+        if (data == null) return;
+        SetRadius(data.range);
+    }
+    private void SetRadius(float r)
+    {
+        radiusRenderer.transform.localScale = Vector3.one * r * 2;
+    }
+}
+

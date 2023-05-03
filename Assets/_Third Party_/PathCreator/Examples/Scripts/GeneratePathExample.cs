@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using Sirenix.OdinInspector;
 
 namespace PathCreation.Examples
 {
@@ -14,16 +13,11 @@ namespace PathCreation.Examples
 
         void Start()
         {
-            SetPath();
-        }
-
-        [Button]
-        public void SetPath()
-        {
             if (waypoints.Length > 0)
             {
                 // Create a new bezier path from the waypoints.
-                BezierPath bezierPath = new BezierPath(waypoints, closedLoop, PathSpace.xyz);
+                BezierPath bezierPath = new BezierPath(waypoints, closedLoop, PathSpace.xy);
+                bezierPath.AutoControlLength = 0.06f;
                 GetComponent<PathCreator>().bezierPath = bezierPath;
             }
         }

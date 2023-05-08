@@ -41,11 +41,9 @@ public class Tower : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Something entered the radius");
         Projectile projectile = other.GetComponent<Projectile>();
         if (projectile == null) return;
-        Debug.Log("A projectile entered the radius!");
-        projectile.AddComponent<SlowModifier>();
+        projectile.GetOrAddComponent<SlowModifier>();
     }
 }
 

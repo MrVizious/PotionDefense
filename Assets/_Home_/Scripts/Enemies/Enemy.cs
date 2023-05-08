@@ -6,11 +6,11 @@ using ExtensionMethods;
 using Sirenix.OdinInspector;
 using DesignPatterns;
 using UltEvents;
+using UnityEngine.Events;
 
 public class Enemy : Poolable<Enemy>
 {
     // Events
-    public UltEvent onDie;
     public UltEvent onEndOfPath;
 
     // Public Data
@@ -43,6 +43,7 @@ public class Enemy : Poolable<Enemy>
             _moving = value;
         }
     }
+
 
     // Private variables
     private float distanceTravelled = 0f;
@@ -88,4 +89,7 @@ public class Enemy : Poolable<Enemy>
         transform.position = path.path.GetPointAtDistance(distanceTravelled);
         transform.rotation = path.path.GetRotationAtDistance(distanceTravelled);
     }
+
+
+
 }

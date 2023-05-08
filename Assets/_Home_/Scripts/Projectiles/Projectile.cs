@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DesignPatterns;
+using UltEvents;
+using Sirenix.OdinInspector;
+using UnityEngine.Events;
 
 public class Projectile : Poolable<Projectile>
 {
@@ -10,6 +13,8 @@ public class Projectile : Poolable<Projectile>
     public float secondsToDie = 10f;
 
     private Coroutine dieAfterCoroutine = null;
+
+
 
     // Ejecuta cada frame
     private void Update()
@@ -43,7 +48,6 @@ public class Projectile : Poolable<Projectile>
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("Hit something!");
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
         if (enemy == null) return;
         enemy.Hurt(damage);

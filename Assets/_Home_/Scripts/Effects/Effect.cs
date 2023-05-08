@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Effect : MonoBehaviour
 {
     public float durationInSeconds = -1f;
+    public int level = 1;
     protected Enemy enemy;
     protected Coroutine endEffectCoroutine;
     protected void OnEnable()

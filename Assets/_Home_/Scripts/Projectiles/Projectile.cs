@@ -27,8 +27,17 @@ public class Projectile : Poolable<Projectile>
     public override void OnPoolRelease()
     {
         base.OnPoolRelease();
+
+        // Die after coroutine cleanup
         if (dieAfterCoroutine != null) StopCoroutine(dieAfterCoroutine);
         dieAfterCoroutine = null;
+
+        foreach (ProjectileModifier modifier in GetComponents<ProjectileModifier>())
+        {
+            Destroy(modifier);
+        }
+
+        // Set to false
         gameObject.SetActive(false);
     }
 

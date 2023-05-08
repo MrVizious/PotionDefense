@@ -1,23 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DesignPatterns;
 using Sirenix.OdinInspector;
+using DesignPatterns;
 
 public class ProjectileSpawner : MonoBehaviour
 {
-    public Projectile projectilePrefab;
-    private Pool<Projectile> projectilePool;
-    private void Start()
+    private Pool<Projectile> _projectilePool;
+    private Pool<Projectile> projectilePool
     {
-        projectilePool = new Pool<Projectile>(
-            3, 50, prefab: projectilePrefab
-        );
+        get
+        {
+            if (_projectilePool == null)
+            {
+                _projectilePool = FindObjectOfType<ProjectilePool>().projectilePool;
+            }
+            return _projectilePool;
+        }
     }
 
     [Button]
     public void Spawn()
     {
+        //if (projectilePool == null) return;
         Projectile newProjectile = projectilePool.Get();
         newProjectile.transform.position = transform.position;
         newProjectile.transform.rotation = transform.rotation;

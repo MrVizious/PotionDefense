@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 795965975301615692}
   - component: {fileID: 795965975301615695}
   - component: {fileID: 2165069699987703046}
-  - component: {fileID: 443542072796995575}
   m_Layer: 0
   m_Name: Projectile
   m_TagString: Untagged
@@ -118,15 +117,3 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0000001450395, y: -0.022213759}
   m_Size: {x: 0.6437657, y: 0.81204134}
   m_Direction: 0
---- !u!114 &443542072796995575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 795965975301615694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be1c1ff9b8c76074f892e0fa8d1a8617, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

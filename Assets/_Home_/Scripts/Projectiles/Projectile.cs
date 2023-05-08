@@ -38,6 +38,11 @@ public class Projectile : Poolable<Projectile>
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
         if (enemy == null) return;
         enemy.Hurt(damage);
+
+        foreach (ProjectileModifier modifier in GetComponents<ProjectileModifier>())
+        {
+            modifier.OnHit(enemy);
+        }
         Release();
     }
 

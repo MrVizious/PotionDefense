@@ -16,6 +16,7 @@ public class Enemy : Poolable<Enemy>
     // Public Data
     public EnemyData data;
     public PathCreator path;
+    public float speedModifier = 1f;
 
     // Properties
     private float _currentHealth;
@@ -83,7 +84,7 @@ public class Enemy : Poolable<Enemy>
 
     private void Move()
     {
-        distanceTravelled += data.speed * Time.deltaTime;
+        distanceTravelled += data.speed * speedModifier * Time.deltaTime;
         transform.position = path.path.GetPointAtDistance(distanceTravelled);
         transform.rotation = path.path.GetRotationAtDistance(distanceTravelled);
     }

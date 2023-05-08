@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using ExtensionMethods;
+using DesignPatterns;
 
 public class PlayerLook : MonoBehaviour
 {
@@ -39,6 +40,20 @@ public class PlayerLook : MonoBehaviour
         set
         {
             _targetPosition = value;
+        }
+    }
+
+
+    private Pool<Projectile> _projectilePool;
+    private Pool<Projectile> projectilePool
+    {
+        get
+        {
+            if (_projectilePool == null)
+            {
+                _projectilePool = FindObjectOfType<ProjectilePool>().projectilePool;
+            }
+            return _projectilePool;
         }
     }
 
@@ -96,6 +111,10 @@ public class PlayerLook : MonoBehaviour
         if (c.started)
         {
             Debug.Log("Pium!");
+            Projectile newProjectile = projectilePool.Get();
+            newProjectile.transform.position = transform.position;
+            newProjectile.transform.rotation = Quaternion.LookRotation(transform.forward, lookDirection);
+            newProjectile.Init(projectilePool);
         }
     }
 }

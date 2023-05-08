@@ -8,7 +8,6 @@ using System.Linq;
 public class Tower : MonoBehaviour
 {
     public TowerData data;
-    [SerializeField]
     private SpriteRenderer radiusRenderer;
 
     private void Start()
@@ -38,6 +37,15 @@ public class Tower : MonoBehaviour
     private void SetRadius(float r)
     {
         radiusRenderer.transform.localScale = Vector3.one * r * 2;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Something entered the radius");
+        Projectile projectile = other.GetComponent<Projectile>();
+        if (projectile == null) return;
+        Debug.Log("A projectile entered the radius!");
+        projectile.AddComponent<SlowModifier>();
     }
 }
 

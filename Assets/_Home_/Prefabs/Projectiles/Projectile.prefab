@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 8
+  damage: 5
+  secondsToDie: 4
 --- !u!70 &2165069699987703046
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

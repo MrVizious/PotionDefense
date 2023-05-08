@@ -7,6 +7,9 @@ public class Projectile : Poolable<Projectile>
 {
     public float speed = 2f;
     public float damage = 5f;
+    public float secondsToDie = 10f;
+
+    private Coroutine dieAfterCoroutine = null;
 
     // Ejecuta cada frame
     private void Update()
@@ -18,11 +21,14 @@ public class Projectile : Poolable<Projectile>
     {
         base.Init(newPool);
         gameObject.SetActive(true);
+        dieAfterCoroutine = StartCoroutine(DieAfter(secondsToDie));
     }
 
     public override void OnPoolRelease()
     {
         base.OnPoolRelease();
+        if (dieAfterCoroutine != null) StopCoroutine(dieAfterCoroutine);
+        dieAfterCoroutine = null;
         gameObject.SetActive(false);
     }
 
@@ -32,6 +38,12 @@ public class Projectile : Poolable<Projectile>
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
         if (enemy == null) return;
         enemy.Hurt(damage);
+        Release();
+    }
+
+    private IEnumerator DieAfter(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
         Release();
     }
 

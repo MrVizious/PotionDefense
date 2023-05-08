@@ -11,6 +11,8 @@ using UnityEngine.Events;
 public class Enemy : Poolable<Enemy>
 {
     // Events
+    public UltEvent onDie { get; set; }
+    public UltEvent onDamaged { get; set; }
     public UltEvent onEndOfPath;
 
     // Public Data

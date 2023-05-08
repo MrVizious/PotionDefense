@@ -50,7 +50,7 @@ public class Projectile : Poolable<Projectile>
     {
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
         if (enemy == null) return;
-        enemy.Hurt(damage);
+        enemy.Damage(damage);
 
         foreach (ProjectileModifier modifier in GetComponents<ProjectileModifier>())
         {

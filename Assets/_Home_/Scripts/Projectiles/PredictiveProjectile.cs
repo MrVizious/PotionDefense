@@ -51,7 +51,6 @@ public class PredictiveProjectile : Poolable<PredictiveProjectile>, IProjectile
     {
         if (target == null) Release();
         Vector3 targetPosition;
-        Debug.Log(rb.velocity);
         if (Vector2.Distance(transform.position, target.position) < seekToHitDistance)
         {
             targetPosition = target.position;

@@ -35,6 +35,13 @@ public class MovingState : PlayerState
     private void FixedUpdate()
     {
         //rb.MovePosition((Vector2)rb.position + playerController.lastMovementInput * playerData.speed * Time.deltaTime);
+        //Debug.Log(playerController.lastMovementInput);
         rb.velocity = playerController.lastMovementInput * playerData.speed;
+    }
+
+    public override void Exit()
+    {
+        rb.velocity = Vector2.zero;
+        base.Exit();
     }
 }

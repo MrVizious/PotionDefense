@@ -45,9 +45,14 @@ public class PlayerController : StateMachine<PlayerState>
     {
         if (c.canceled)
         {
+            Debug.Log("Canceled");
             lastMovementInput = Vector2.zero;
         }
-        else lastMovementInput = c.ReadValue<Vector2>();
+        else
+        {
+            Debug.Log("Not Canceled");
+            lastMovementInput = c.ReadValue<Vector2>();
+        }
         currentState.Move(c);
     }
 

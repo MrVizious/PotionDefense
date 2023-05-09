@@ -43,25 +43,24 @@ public class PlayerLook : MonoBehaviour
         }
     }
 
-
-    private Pool<Projectile> _projectilePool;
-    private Pool<Projectile> projectilePool
-    {
-        get
-        {
-            if (_projectilePool == null)
-            {
-                _projectilePool = FindObjectOfType<ProjectilePool>().projectilePool;
-            }
-            return _projectilePool;
-        }
-    }
-
     public Vector2 lookDirection
     {
         get
         {
             return (targetPosition - (Vector2)transform.position).normalized;
+        }
+    }
+
+    private SimpleProjectileShooter _shooter;
+    private SimpleProjectileShooter shooter
+    {
+        get
+        {
+            if (_shooter == null)
+            {
+                _shooter = this.GetOrAddComponent<SimpleProjectileShooter>();
+            }
+            return _shooter;
         }
     }
 
@@ -106,15 +105,11 @@ public class PlayerLook : MonoBehaviour
         lastJoystickInput = input;
     }
 
-    public virtual void Shoot(InputAction.CallbackContext c)
+    protected virtual void Shoot(InputAction.CallbackContext c)
     {
         if (c.started)
-        {
-            Debug.Log("Pium!");
-            Projectile newProjectile = projectilePool.Get();
-            newProjectile.transform.position = transform.position;
-            newProjectile.transform.rotation = Quaternion.LookRotation(transform.forward, lookDirection);
-            newProjectile.Init(projectilePool);
-        }
+            shooter.Shoot(transform.position,
+                          Quaternion.LookRotation(transform.forward, lookDirection),
+                          LayerMask.NameToLayer("PlayerProjectiles"));
     }
 }

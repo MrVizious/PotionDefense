@@ -2,29 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DesignPatterns;
-using UltEvents;
 using Sirenix.OdinInspector;
-using UnityEngine.Events;
 
-public class Projectile : Poolable<Projectile>
+public class SimpleProjectile : Poolable<SimpleProjectile>, IProjectile
 {
-    public float speed = 2f;
-    public float damage = 5f;
-    public float secondsToDie = 10f;
+    [SerializeField]
+    private float _speed;
+    public float speed => _speed;
+    public float speedModifier { get; private set; }
+    [SerializeField]
+    private float _damage;
+    public float damage => _damage;
+    public float damageModifier { get; private set; }
+    [SerializeField]
+    public float _secondsToDie;
+    public float secondsToDie => _secondsToDie;
+
 
     private Coroutine dieAfterCoroutine = null;
-
 
 
     // Ejecuta cada frame
     private void Update()
     {
+        Move();
+    }
+
+    public void Move()
+    {
         transform.position += transform.up * speed * Time.deltaTime;
     }
 
-    public override void Init(Pool<Projectile> newPool)
+    public void Shoot(Vector3 position, Quaternion rotation, int layer, Transform target = null)
     {
-        base.Init(newPool);
+        transform.position = position;
+        transform.rotation = rotation;
+        gameObject.layer = layer;
         gameObject.SetActive(true);
         dieAfterCoroutine = StartCoroutine(DieAfter(secondsToDie));
     }
@@ -46,12 +59,14 @@ public class Projectile : Poolable<Projectile>
         gameObject.SetActive(false);
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    public void OnCollisionEnter2D(Collision2D other)
     {
+        IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
+        if (damageable == null) return;
+        damageable.Damage(damage);
+
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
         if (enemy == null) return;
-        enemy.Damage(damage);
-
         foreach (ProjectileModifier modifier in GetComponents<ProjectileModifier>())
         {
             modifier.OnHit(enemy);
@@ -64,5 +79,6 @@ public class Projectile : Poolable<Projectile>
         yield return new WaitForSeconds(seconds);
         Release();
     }
+
 
 }

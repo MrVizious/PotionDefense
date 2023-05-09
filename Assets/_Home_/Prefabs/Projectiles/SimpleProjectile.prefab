@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 795965975301615695}
   - component: {fileID: 2165069699987703046}
   m_Layer: 0
-  m_Name: Projectile
+  m_Name: SimpleProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -98,11 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44386e412d8189641ba41989384c5f95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
-  damage: 5
-  secondsToDie: 4
-  onHurt:
-    _PersistentCalls: []
+  _speed: 3
+  _secondsToDie: 4
 --- !u!70 &2165069699987703046
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

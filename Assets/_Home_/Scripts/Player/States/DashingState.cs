@@ -62,11 +62,4 @@ public class DashingState : PlayerState
         playerController.ChangeToPreviousState();
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.collider.CompareTag("Pit"))
-        {
-            StopDashing();
-        }
-    }
 }

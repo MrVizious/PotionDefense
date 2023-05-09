@@ -41,7 +41,7 @@ public class Tower : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Projectile projectile = other.GetComponent<Projectile>();
+        SimpleProjectile projectile = other.GetComponent<SimpleProjectile>();
         if (projectile == null) return;
         projectile.GetOrAddComponent<SlowModifier>();
     }

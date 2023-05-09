@@ -6,6 +6,7 @@ public class SlowModifier : ProjectileModifier
 {
     public override void OnHit(Enemy enemy)
     {
+        base.OnHit(enemy);
         enemy.gameObject.GetComponent<SlowEffect>()?.End();
         SlowEffect slowEffect = enemy.gameObject.AddComponent<SlowEffect>();
         //TODO: Remove line, just for testing

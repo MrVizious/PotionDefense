@@ -6,9 +6,8 @@ using ExtensionMethods;
 using Sirenix.OdinInspector;
 using DesignPatterns;
 using UltEvents;
-using UnityEngine.Events;
 
-public class Enemy : Poolable<Enemy>
+public class Enemy : Poolable<Enemy>, IDamageable
 {
     // Events
     public UltEvent onDie { get; set; }
@@ -57,7 +56,7 @@ public class Enemy : Poolable<Enemy>
     }
 
     [Button]
-    public void Hurt(float hurtAmount)
+    public void Damage(float hurtAmount)
     {
         currentHealth -= hurtAmount;
     }

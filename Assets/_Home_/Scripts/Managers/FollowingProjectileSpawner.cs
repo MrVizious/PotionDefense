@@ -4,16 +4,16 @@ using UnityEngine;
 using Sirenix.OdinInspector;
 using DesignPatterns;
 
-public class ProjectileSpawner : MonoBehaviour
+public class FollowingProjectileSpawner : MonoBehaviour
 {
-    private Pool<Projectile> _projectilePool;
-    private Pool<Projectile> projectilePool
+    protected Pool<FollowingProjectile> _projectilePool;
+    protected Pool<FollowingProjectile> projectilePool
     {
         get
         {
             if (_projectilePool == null)
             {
-                _projectilePool = FindObjectOfType<ProjectilePool>().projectilePool;
+                _projectilePool = FindObjectOfType<FollowingProjectilePool>().projectilePool;
             }
             return _projectilePool;
         }
@@ -23,7 +23,7 @@ public class ProjectileSpawner : MonoBehaviour
     public void Spawn()
     {
         //if (projectilePool == null) return;
-        Projectile newProjectile = projectilePool.Get();
+        FollowingProjectile newProjectile = projectilePool.Get();
         newProjectile.transform.position = transform.position;
         newProjectile.transform.rotation = transform.rotation;
         newProjectile.Init(projectilePool);

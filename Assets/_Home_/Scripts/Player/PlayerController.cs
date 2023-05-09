@@ -43,7 +43,11 @@ public class PlayerController : StateMachine<PlayerState>
 
     public void Movement(InputAction.CallbackContext c)
     {
-        lastMovementInput = c.ReadValue<Vector2>();
+        if (c.canceled)
+        {
+            lastMovementInput = Vector2.zero;
+        }
+        else lastMovementInput = c.ReadValue<Vector2>();
         currentState.Move(c);
     }
 

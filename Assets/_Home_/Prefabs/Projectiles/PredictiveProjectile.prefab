@@ -118,6 +118,6 @@ MonoBehaviour:
   turningSpeed: 160
   _damage: 5
   _secondsToDie: 100
-  seekToHitDistance: 2
+  seekToHitDistance: 5
   predictiveMagnitude: 1
   target: {fileID: 0}

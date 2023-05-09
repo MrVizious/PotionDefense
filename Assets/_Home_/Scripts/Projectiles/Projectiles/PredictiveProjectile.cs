@@ -11,6 +11,8 @@ public class PredictiveProjectile : Poolable<PredictiveProjectile>, IProjectile
     public float speed => _speed;
     public float speedModifier { get; private set; }
     public float turningSpeed;
+
+    [SerializeField]
     private float _damage;
     public float damage => _damage;
     public float damageModifier { get; private set; }
@@ -102,18 +104,28 @@ public class PredictiveProjectile : Poolable<PredictiveProjectile>, IProjectile
         damageable.Damage(damage);
 
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
-        if (enemy == null) return;
-        foreach (ProjectileModifier modifier in GetComponents<ProjectileModifier>())
+        if (enemy != null)
         {
-            modifier.OnHit(enemy);
+            foreach (ProjectileModifier modifier in GetComponents<ProjectileModifier>())
+            {
+                modifier.OnHit(enemy);
+            }
         }
+
         Release();
     }
 
     private IEnumerator DieAfter(float seconds)
     {
-        yield return new WaitForSeconds(seconds);
-        Release();
+        if (seconds <= 0)
+        {
+            yield return null;
+        }
+        else
+        {
+            yield return new WaitForSeconds(seconds);
+            Release();
+        }
     }
 
 

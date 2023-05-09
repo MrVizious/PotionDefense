@@ -11,8 +11,10 @@ public interface IDamageable
 
 
     UltEvent onDamaged { get; set; }
+    UltEvent onHealed { get; set; }
     UltEvent onDie { get; set; }
 
 
     void Damage(float amount);
+    void Heal(float amount);
 }

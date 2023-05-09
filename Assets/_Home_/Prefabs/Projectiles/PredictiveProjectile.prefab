@@ -115,7 +115,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  turningSpeed: 140
+  turningSpeed: 160
+  _damage: 5
   _secondsToDie: 100
   seekToHitDistance: 2
   predictiveMagnitude: 1

@@ -4,15 +4,41 @@ using UnityEngine;
 using ExtensionMethods;
 using UnityEngine.InputSystem;
 using DesignPatterns;
+using UltEvents;
+using Sirenix.OdinInspector;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(PlayerLook))]
-public class PlayerController : StateMachine<PlayerState>
+public class PlayerController : StateMachine<PlayerState>, IDamageable
 {
 
     public PlayerData playerData;
     [HideInInspector] public Rigidbody2D rb { get; private set; }
     [HideInInspector] public PlayerLook playerLook { get; private set; }
+
+    private float _currentHealth;
+    [ShowInInspector]
+    public float currentHealth
+    {
+        get { return _currentHealth; }
+        private set
+        {
+            value = Mathf.Max(0f, value);
+            value = Mathf.Min(playerData.maxHealth, value);
+            if (value > _currentHealth) onHealed?.Invoke();
+            if (value < _currentHealth) onDamaged?.Invoke();
+            _currentHealth = value;
+            if (_currentHealth <= 0f)
+            {
+                onDie?.Invoke();
+            }
+        }
+    }
+
+    public UltEvent onDamaged { get; set; }
+    public UltEvent onHealed { get; set; }
+    public UltEvent onDie { get; set; }
+
     [HideInInspector] public Vector2 lastMovementInput = Vector2.zero;
 
     [HideInInspector] public HashSet<Collider2D> touchingColliders;
@@ -27,6 +53,9 @@ public class PlayerController : StateMachine<PlayerState>
         rb = this.GetOrAddComponent<Rigidbody2D>();
         playerLook = this.GetOrAddComponent<PlayerLook>();
         ChangeToState(this.GetOrAddComponent<IdleState>());
+        _currentHealth = playerData.maxHealth;
+        if (onDie == null) onDie = new UltEvent();
+        onDie += () => { Debug.Log("Dead!"); };
     }
 
     public override void ChangeToPreviousState()
@@ -45,12 +74,10 @@ public class PlayerController : StateMachine<PlayerState>
     {
         if (c.canceled)
         {
-            Debug.Log("Canceled");
             lastMovementInput = Vector2.zero;
         }
         else
         {
-            Debug.Log("Not Canceled");
             lastMovementInput = c.ReadValue<Vector2>();
         }
         currentState.Move(c);
@@ -71,4 +98,13 @@ public class PlayerController : StateMachine<PlayerState>
         touchingColliders.Remove(other.collider);
     }
 
+    public void Damage(float amount)
+    {
+        currentHealth -= amount;
+    }
+
+    public void Heal(float amount)
+    {
+        currentHealth += amount;
+    }
 }

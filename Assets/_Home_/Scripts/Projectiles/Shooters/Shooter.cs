@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DesignPatterns;
+using Sirenix.OdinInspector;
 
 public abstract class Shooter<T> : MonoBehaviour where T : Poolable<T>, IProjectile
 {
-    private Pool<T> _projectilePool;
-    private Pool<T> projectilePool
+    protected Pool<T> _projectilePool;
+    protected Pool<T> projectilePool
     {
         get
         {
@@ -20,10 +21,17 @@ public abstract class Shooter<T> : MonoBehaviour where T : Poolable<T>, IProject
     }
 
 
-    public void Shoot(Vector3 position, Quaternion direction, int layer, Transform target = null)
+    [Button]
+    public virtual void Shoot(Vector3 position, Quaternion direction, int layer, Transform target = null)
     {
         T newProjectile = projectilePool.Get();
         newProjectile.Init(projectilePool);
         newProjectile.Shoot(position, direction, layer, target);
+    }
+
+    [Button]
+    public virtual void ShootFromShooter(Transform target = null)
+    {
+        Shoot(transform.position, transform.rotation, LayerMask.NameToLayer("EnemiesProjectiles"), target);
     }
 }

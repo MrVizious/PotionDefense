@@ -6,4 +6,5 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
     public float speed, dashSpeed, dashDuration;
+    public float maxHealth;
 }

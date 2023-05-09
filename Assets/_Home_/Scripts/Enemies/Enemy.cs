@@ -12,10 +12,11 @@ public class Enemy : Poolable<Enemy>, IDamageable
     // Events
     public UltEvent onDie { get; set; }
     public UltEvent onDamaged { get; set; }
+    public UltEvent onHealed { get; set; }
     public UltEvent onEndOfPath;
 
     // Public Data
-    public EnemyData data;
+    public EnemyData enemyData;
     public PathCreator path;
     public float speedModifier = 1f;
 
@@ -24,12 +25,18 @@ public class Enemy : Poolable<Enemy>, IDamageable
     [ShowInInspector]
     public float currentHealth
     {
-        get => _currentHealth;
+        get { return _currentHealth; }
         protected set
         {
-            value = Mathf.Clamp(value, 0f, Mathf.Infinity);
+            value = Mathf.Max(0f, value);
+            value = Mathf.Min(enemyData.maxHealth, value);
+            if (value > _currentHealth) onHealed?.Invoke();
+            if (value < _currentHealth) onDamaged?.Invoke();
             _currentHealth = value;
-            if (_currentHealth <= 0f) onDie.Invoke();
+            if (_currentHealth <= 0f)
+            {
+                onDie?.Invoke();
+            }
         }
     }
 
@@ -51,6 +58,7 @@ public class Enemy : Poolable<Enemy>, IDamageable
 
     private void Start()
     {
+        _currentHealth = enemyData.maxHealth;
         if (onDie == null) onDie = new UltEvent();
         onDie += Release;
     }
@@ -60,11 +68,15 @@ public class Enemy : Poolable<Enemy>, IDamageable
     {
         currentHealth -= hurtAmount;
     }
+    public void Heal(float hurtAmount)
+    {
+        currentHealth += hurtAmount;
+    }
 
     public void Init(Pool<Enemy> newPool, PathCreator newPath)
     {
         base.Init(newPool);
-        currentHealth = data.maxHealth;
+        currentHealth = enemyData.maxHealth;
         path = newPath;
         gameObject.SetActive(true);
         moving = true;
@@ -86,7 +98,7 @@ public class Enemy : Poolable<Enemy>, IDamageable
 
     private void Move()
     {
-        distanceTravelled += data.speed * speedModifier * Time.deltaTime;
+        distanceTravelled += enemyData.speed * speedModifier * Time.deltaTime;
         transform.position = path.path.GetPointAtDistance(distanceTravelled);
         transform.rotation = path.path.GetRotationAtDistance(distanceTravelled);
     }

@@ -4,4 +4,4 @@ using UnityEngine;
 using DesignPatterns;
 using UnityEngine.InputSystem;
 
-public class FollowingProjectileShooter : Shooter<FollowingProjectile> { }
+public class FollowingProjectileSpawner : ProjectileSpawner<FollowingProjectile> { }

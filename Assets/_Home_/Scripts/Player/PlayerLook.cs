@@ -51,14 +51,14 @@ public class PlayerLook : MonoBehaviour
         }
     }
 
-    private SimpleProjectileShooter _shooter;
-    private SimpleProjectileShooter shooter
+    private SimpleProjectileSpawner _shooter;
+    private SimpleProjectileSpawner shooter
     {
         get
         {
             if (_shooter == null)
             {
-                _shooter = this.GetOrAddComponent<SimpleProjectileShooter>();
+                _shooter = this.GetOrAddComponent<SimpleProjectileSpawner>();
             }
             return _shooter;
         }

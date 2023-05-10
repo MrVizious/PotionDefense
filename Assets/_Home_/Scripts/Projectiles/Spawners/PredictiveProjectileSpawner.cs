@@ -4,4 +4,4 @@ using UnityEngine;
 using DesignPatterns;
 using UnityEngine.InputSystem;
 
-public class SimpleProjectileShooter : Shooter<SimpleProjectile> { }
+public class PredictiveProjectileSpawner : ProjectileSpawner<PredictiveProjectile> { }

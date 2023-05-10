@@ -4,7 +4,7 @@ using UnityEngine;
 using DesignPatterns;
 using Sirenix.OdinInspector;
 
-public abstract class Shooter<T> : MonoBehaviour where T : Poolable<T>, IProjectile
+public abstract class ProjectileSpawner<T> : MonoBehaviour where T : Poolable<T>, IProjectile
 {
     protected Pool<T> _projectilePool;
     protected Pool<T> projectilePool

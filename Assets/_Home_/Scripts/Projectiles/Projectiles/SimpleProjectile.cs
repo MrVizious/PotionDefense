@@ -4,7 +4,7 @@ using UnityEngine;
 using DesignPatterns;
 using Sirenix.OdinInspector;
 
-public class SimpleProjectile : Poolable<SimpleProjectile>, IProjectile
+public class SimpleProjectile : Poolable, IProjectile
 {
     [SerializeField]
     private float _speed;
@@ -45,7 +45,6 @@ public class SimpleProjectile : Poolable<SimpleProjectile>, IProjectile
     public override void OnPoolRelease()
     {
         base.OnPoolRelease();
-
         // Die after coroutine cleanup
         if (dieAfterCoroutine != null) StopCoroutine(dieAfterCoroutine);
         dieAfterCoroutine = null;

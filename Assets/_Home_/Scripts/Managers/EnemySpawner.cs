@@ -17,11 +17,12 @@ public class EnemySpawner : MonoBehaviour
         );
     }
 
+
     [Button]
     public void Spawn()
     {
         Enemy newEnemy = enemyPool.Get();
         newEnemy.transform.position = transform.position;
-        newEnemy.Init(enemyPool, pathCreator);
+        newEnemy.path = pathCreator;
     }
 }

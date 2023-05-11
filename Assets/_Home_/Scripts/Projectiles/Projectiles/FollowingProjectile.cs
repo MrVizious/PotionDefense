@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DesignPatterns;
 
-public class FollowingProjectile : Poolable<FollowingProjectile>, IProjectile
+public class FollowingProjectile : Poolable, IProjectile
 {
 
     [SerializeField]

@@ -7,7 +7,7 @@ using Sirenix.OdinInspector;
 using DesignPatterns;
 using UltEvents;
 
-public class Enemy : Poolable<Enemy>, IDamageable
+public class Enemy : Poolable, IDamageable
 {
     // Events
     public UltEvent onDie { get; set; }
@@ -73,11 +73,10 @@ public class Enemy : Poolable<Enemy>, IDamageable
         currentHealth += hurtAmount;
     }
 
-    public void Init(Pool<Enemy> newPool, PathCreator newPath)
+    public override void OnPoolGet()
     {
-        base.Init(newPool);
+        base.OnPoolGet();
         currentHealth = enemyData.maxHealth;
-        path = newPath;
         gameObject.SetActive(true);
         moving = true;
     }

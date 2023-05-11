@@ -4,7 +4,7 @@ using UnityEngine;
 using DesignPatterns;
 using Sirenix.OdinInspector;
 
-public abstract class ProjectileSpawner<T> : MonoBehaviour where T : Poolable<T>, IProjectile
+public abstract class ProjectileSpawner<T> : MonoBehaviour where T : Poolable, IProjectile
 {
     protected Pool<T> _projectilePool;
     protected Pool<T> projectilePool
@@ -21,17 +21,15 @@ public abstract class ProjectileSpawner<T> : MonoBehaviour where T : Poolable<T>
     }
 
 
-    [Button]
     public virtual void Shoot(Vector3 position, Quaternion direction, int layer, Transform target = null)
     {
         T newProjectile = projectilePool.Get();
-        newProjectile.Init(projectilePool);
         newProjectile.Shoot(position, direction, layer, target);
     }
 
-    [Button]
-    public virtual void ShootFromShooter(Transform target = null)
+    public virtual void ShootFromShooterTowards(Transform target = null)
     {
         Shoot(transform.position, transform.rotation, LayerMask.NameToLayer("EnemiesProjectiles"), target);
     }
+
 }

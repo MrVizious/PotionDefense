@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DesignPatterns;
 
-public class PredictiveProjectile : Poolable<PredictiveProjectile>, IProjectile
+public class PredictiveProjectile : Poolable, IProjectile
 {
 
     [SerializeField]
@@ -77,6 +77,7 @@ public class PredictiveProjectile : Poolable<PredictiveProjectile>, IProjectile
         transform.rotation = rotation;
         gameObject.layer = layer;
         gameObject.SetActive(true);
+        this.target = target;
         dieAfterCoroutine = StartCoroutine(DieAfter(secondsToDie));
     }
 

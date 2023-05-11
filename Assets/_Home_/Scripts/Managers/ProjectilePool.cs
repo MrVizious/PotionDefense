@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DesignPatterns;
 
-public class ProjectilePool<T> : MonoBehaviour where T : Poolable<T>, IProjectile
+public class ProjectilePool<T> : MonoBehaviour where T : Poolable, IProjectile
 {
     public T projectilePrefab;
     public Pool<T> projectilePool

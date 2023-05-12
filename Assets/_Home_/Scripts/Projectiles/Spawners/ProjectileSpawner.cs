@@ -4,31 +4,47 @@ using UnityEngine;
 using DesignPatterns;
 using Sirenix.OdinInspector;
 
-public abstract class ProjectileSpawner<T> : MonoBehaviour where T : Projectile
+public class ProjectileSpawner : MonoBehaviour
 {
-    protected Pool<T> _projectilePool;
-    protected abstract Pool<T> projectilePool { get; }
-    /*
+    public bool targetPlayer = false;
+    public Projectile prefab;
+    protected ProjectilePool _projectilePool;
+    protected ProjectilePool projectilePool
     {
         get
         {
             if (_projectilePool == null)
             {
-                _projectilePool = FindObjectOfType<ProjectilePool>().projectilePool;
-                if (_projectilePool == null) Debug.LogError("There is no projectile pool!");
+                foreach (ProjectilePool pool in FindObjectsByType<ProjectilePool>(FindObjectsSortMode.None))
+                {
+                    if (pool.projectilePrefab == prefab)
+                    {
+                        _projectilePool = pool;
+                        break;
+                    }
+                }
+                if (_projectilePool == null)
+                {
+                    ProjectilePool newProjectilePool = new GameObject("Projectile Pool " + prefab.name)
+                                                        .AddComponent<ProjectilePool>();
+                    newProjectilePool.projectilePrefab = prefab;
+                    newProjectilePool.CreatePool();
+                    _projectilePool = newProjectilePool;
+                }
             }
             return _projectilePool;
         }
     }
-    */
 
 
     public virtual void Shoot(Vector3 position, Quaternion direction, int layer, Transform target = null)
     {
-        var newProjectile = projectilePool.Get();
+        if (target == null) target = projectilePool.playerTransform;
+        Projectile newProjectile = projectilePool.Get();
         newProjectile.Shoot(position, direction, layer, target);
     }
 
+    [Button]
     public virtual void ShootFromShooter(Transform target = null)
     {
         Shoot(transform.position, transform.rotation, LayerMask.NameToLayer("EnemiesProjectiles"), target);

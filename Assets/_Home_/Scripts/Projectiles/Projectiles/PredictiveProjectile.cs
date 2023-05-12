@@ -56,7 +56,7 @@ public class PredictiveProjectile : Projectile
             turningSpeed * Time.deltaTime
         );
         Debug.DrawLine(transform.position, targetPosition, Color.cyan);
-        transform.position += transform.up * speed * Time.deltaTime;
+        transform.position += transform.up * projectileData.speed * speedModifier * Time.deltaTime;
     }
 
     public override void Shoot(Vector3 position, Quaternion rotation, int layer, Transform target = null)
@@ -67,7 +67,7 @@ public class PredictiveProjectile : Projectile
         gameObject.layer = layer;
         gameObject.SetActive(true);
         this.target = target;
-        dieAfterCoroutine = StartCoroutine(DieAfter(secondsToDie));
+        dieAfterCoroutine = StartCoroutine(DieAfter(projectileData.secondsToDie));
     }
 
     public override void OnPoolRelease()
@@ -91,7 +91,7 @@ public class PredictiveProjectile : Projectile
     {
         IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
         if (damageable == null) return;
-        damageable.Damage(damage);
+        damageable.Damage(projectileData.damage * damageModifier);
 
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
         if (enemy != null)

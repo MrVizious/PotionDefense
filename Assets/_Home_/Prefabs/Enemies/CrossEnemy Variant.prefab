@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 464858524}
-  - component: {fileID: 464858525}
+  - component: {fileID: 6944791312081262170}
   m_Layer: 6
   m_Name: SimpleShooter_2
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 1740846770}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
---- !u!114 &464858525
+--- !u!114 &6944791312081262170
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,9 +41,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 464858523}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3adfa20ac03dadd4e96f41e14af5fa56, type: 3}
+  m_Script: {fileID: 11500000, guid: 5229111024a3b19408041769ad2c23b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetPlayer: 0
+  prefab: {fileID: 795965975301615695, guid: 990f7a0db8346114f80f1d25cd95d9fb, type: 3}
 --- !u!1 &591706306
 GameObject:
   m_ObjectHideFlags: 0
@@ -53,7 +55,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 591706307}
-  - component: {fileID: 591706308}
+  - component: {fileID: 7747672773610725368}
   m_Layer: 6
   m_Name: SimpleShooter_1
   m_TagString: Untagged
@@ -76,7 +78,7 @@ Transform:
   m_Father: {fileID: 1740846770}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
---- !u!114 &591706308
+--- !u!114 &7747672773610725368
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,9 +87,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 591706306}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3adfa20ac03dadd4e96f41e14af5fa56, type: 3}
+  m_Script: {fileID: 11500000, guid: 5229111024a3b19408041769ad2c23b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetPlayer: 0
+  prefab: {fileID: 795965975301615695, guid: 990f7a0db8346114f80f1d25cd95d9fb, type: 3}
 --- !u!1 &1148639329
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +101,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1148639330}
-  - component: {fileID: 1148639331}
+  - component: {fileID: 4322638528784988552}
   m_Layer: 6
   m_Name: SimpleShooter
   m_TagString: Untagged
@@ -120,7 +124,7 @@ Transform:
   m_Father: {fileID: 1740846770}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1148639331
+--- !u!114 &4322638528784988552
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,9 +133,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1148639329}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3adfa20ac03dadd4e96f41e14af5fa56, type: 3}
+  m_Script: {fileID: 11500000, guid: 5229111024a3b19408041769ad2c23b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetPlayer: 0
+  prefab: {fileID: 795965975301615695, guid: 990f7a0db8346114f80f1d25cd95d9fb, type: 3}
 --- !u!1 &1540306459
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +147,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1540306460}
-  - component: {fileID: 1540306461}
+  - component: {fileID: 8830711717232806579}
   m_Layer: 6
   m_Name: SimpleShooter_3
   m_TagString: Untagged
@@ -164,7 +170,7 @@ Transform:
   m_Father: {fileID: 1740846770}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -270}
---- !u!114 &1540306461
+--- !u!114 &8830711717232806579
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -173,9 +179,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1540306459}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3adfa20ac03dadd4e96f41e14af5fa56, type: 3}
+  m_Script: {fileID: 11500000, guid: 5229111024a3b19408041769ad2c23b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetPlayer: 0
+  prefab: {fileID: 795965975301615695, guid: 990f7a0db8346114f80f1d25cd95d9fb, type: 3}
 --- !u!1 &1740846769
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37822a28460e84544adde6741c97b47c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyData: {fileID: 0}
+  enemyData: {fileID: 11400000, guid: 9ae3fe74bea8d3c4680461847dd917f9, type: 2}
 --- !u!1001 &8765474847235814804
 PrefabInstance:
   m_ObjectHideFlags: 0

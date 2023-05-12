@@ -8,7 +8,6 @@ public class SimpleProjectile : Projectile
 {
     private Coroutine dieAfterCoroutine = null;
 
-
     // Ejecuta cada frame
     private void Update()
     {
@@ -17,7 +16,7 @@ public class SimpleProjectile : Projectile
 
     public override void Move()
     {
-        transform.position += transform.up * speed * Time.deltaTime;
+        transform.position += transform.up * projectileData.speed * speedModifier * Time.deltaTime;
     }
 
     public override void Shoot(Vector3 position, Quaternion rotation, int layer, Transform target = null)
@@ -26,7 +25,7 @@ public class SimpleProjectile : Projectile
         transform.rotation = rotation;
         gameObject.layer = layer;
         gameObject.SetActive(true);
-        dieAfterCoroutine = StartCoroutine(DieAfter(secondsToDie));
+        dieAfterCoroutine = StartCoroutine(DieAfter(projectileData.secondsToDie));
     }
 
     public override void OnPoolRelease()
@@ -49,7 +48,7 @@ public class SimpleProjectile : Projectile
     {
         IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
         if (damageable == null) return;
-        damageable.Damage(damage);
+        damageable.Damage(projectileData.damage * damageModifier);
 
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
         if (enemy == null) return;

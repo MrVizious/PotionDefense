@@ -100,11 +100,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onRelease:
     _PersistentCalls: []
-  speed: 5
+  projectileData: {fileID: 11400000, guid: 8bb1172d15cd1584e9f9642c9d02c90f, type: 2}
   speedModifier: 1
-  damage: 1
   damageModifier: 1
-  secondsToDie: 10
 --- !u!70 &2165069699987703046
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

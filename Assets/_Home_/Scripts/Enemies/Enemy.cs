@@ -7,7 +7,7 @@ using Sirenix.OdinInspector;
 using DesignPatterns;
 using UltEvents;
 
-public class Enemy : PoolableGO, IDamageable
+public class Enemy : Poolable, IDamageable
 {
     // Events
     public UltEvent onDie { get; set; }

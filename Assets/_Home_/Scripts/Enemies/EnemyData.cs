@@ -8,5 +8,4 @@ public class EnemyData : ScriptableObject
     public float maxHealth = 10f;
     public float speed = 1f;
     public float secondsBetweenShots = 1f;
-
 }

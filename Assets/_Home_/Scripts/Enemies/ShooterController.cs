@@ -10,17 +10,13 @@ public class ShooterController : MonoBehaviour
     public EnemyData enemyData;
 
     private float secondsSinceLastShot = 0f;
-    private List<SimpleProjectileSpawner> simpleProjectileSpawners;
-    private List<FollowingProjectileSpawner> followingProjectileSpawners;
-    private List<PredictiveProjectileSpawner> predictiveProjectileSpawners;
+    private List<ProjectileSpawner> projectileSpawners;
 
 
 
     private void Awake()
     {
-        simpleProjectileSpawners = new List<SimpleProjectileSpawner>(this.GetComponentsInChildren<SimpleProjectileSpawner>());
-        followingProjectileSpawners = new List<FollowingProjectileSpawner>(this.GetComponentsInChildren<FollowingProjectileSpawner>());
-        predictiveProjectileSpawners = new List<PredictiveProjectileSpawner>(this.GetComponentsInChildren<PredictiveProjectileSpawner>());
+        projectileSpawners = new List<ProjectileSpawner>(this.GetComponentsInChildren<ProjectileSpawner>());
     }
 
     private void Update()
@@ -32,15 +28,7 @@ public class ShooterController : MonoBehaviour
     [Button]
     public void Shoot()
     {
-        foreach (SimpleProjectileSpawner spawner in simpleProjectileSpawners)
-        {
-            spawner.ShootFromShooter();
-        }
-        foreach (FollowingProjectileSpawner spawner in followingProjectileSpawners)
-        {
-            spawner.ShootFromShooter();
-        }
-        foreach (PredictiveProjectileSpawner spawner in predictiveProjectileSpawners)
+        foreach (ProjectileSpawner spawner in projectileSpawners)
         {
             spawner.ShootFromShooter();
         }

@@ -3,18 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using DesignPatterns;
 
-public abstract class ProjectilePool<T> : MonoBehaviour where T : Projectile
+public class ProjectilePool : MonoBehaviour
 {
-    public T projectilePrefab;
-    public virtual Pool<T> projectilePool
+    public Projectile projectilePrefab;
+    public Pool<Projectile> projectilePool
     {
         get;
         protected set;
     }
-    protected virtual void OnEnable()
+    private Transform _playerTransform;
+    public Transform playerTransform
     {
-        projectilePool = new Pool<T>(
+        get
+        {
+            if (_playerTransform == null) _playerTransform = FindObjectOfType<PlayerController>().transform;
+            return _playerTransform;
+        }
+    }
+    protected void OnEnable()
+    {
+        CreatePool();
+    }
+
+    public Pool<Projectile> CreatePool(Projectile newProjectilePrefab = null)
+    {
+        if (projectilePool != null)
+        {
+            Debug.LogError("A pool is already created");
+            // TODO: Make the pool change prefab
+        }
+        if (newProjectilePrefab != null) projectilePrefab = newProjectilePrefab;
+        if (projectilePrefab == null) return null;
+        projectilePool = new Pool<Projectile>(
             3, 50, prefab: projectilePrefab
         );
+        return projectilePool;
+    }
+    public Projectile Get()
+    {
+        return projectilePool.Get();
     }
 }

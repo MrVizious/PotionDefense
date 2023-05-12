@@ -4,21 +4,8 @@ using UnityEngine;
 using DesignPatterns;
 using Sirenix.OdinInspector;
 
-public class SimpleProjectile : Poolable, IProjectile
+public class SimpleProjectile : Projectile
 {
-    [SerializeField]
-    private float _speed;
-    public float speed => _speed;
-    public float speedModifier { get; private set; }
-    [SerializeField]
-    private float _damage;
-    public float damage => _damage;
-    public float damageModifier { get; private set; }
-    [SerializeField]
-    public float _secondsToDie;
-    public float secondsToDie => _secondsToDie;
-
-
     private Coroutine dieAfterCoroutine = null;
 
 
@@ -28,12 +15,12 @@ public class SimpleProjectile : Poolable, IProjectile
         Move();
     }
 
-    public void Move()
+    public override void Move()
     {
         transform.position += transform.up * speed * Time.deltaTime;
     }
 
-    public void Shoot(Vector3 position, Quaternion rotation, int layer, Transform target = null)
+    public override void Shoot(Vector3 position, Quaternion rotation, int layer, Transform target = null)
     {
         transform.position = position;
         transform.rotation = rotation;
@@ -58,7 +45,7 @@ public class SimpleProjectile : Poolable, IProjectile
         gameObject.SetActive(false);
     }
 
-    public void OnCollisionEnter2D(Collision2D other)
+    public override void OnCollisionEnter2D(Collision2D other)
     {
         IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
         if (damageable == null) return;

@@ -3,21 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using DesignPatterns;
 
-public class PredictiveProjectile : Poolable, IProjectile
+public class PredictiveProjectile : Projectile
 {
 
-    [SerializeField]
-    private float _speed;
-    public float speed => _speed;
-    public float speedModifier { get; private set; }
     public float turningSpeed;
-
-    [SerializeField]
-    private float _damage;
-    public float damage => _damage;
-    public float damageModifier { get; private set; }
-    public float _secondsToDie;
-    public float secondsToDie => _secondsToDie;
 
     // The distance at which the projectile starts aiming to hit, instead of predicting
     public float seekToHitDistance;
@@ -49,7 +38,7 @@ public class PredictiveProjectile : Poolable, IProjectile
         Move();
     }
 
-    public void Move()
+    public override void Move()
     {
         if (target == null) Release();
         Vector3 targetPosition;
@@ -70,7 +59,7 @@ public class PredictiveProjectile : Poolable, IProjectile
         transform.position += transform.up * speed * Time.deltaTime;
     }
 
-    public void Shoot(Vector3 position, Quaternion rotation, int layer, Transform target = null)
+    public override void Shoot(Vector3 position, Quaternion rotation, int layer, Transform target = null)
     {
         if (target == null) Release();
         transform.position = position;
@@ -98,7 +87,7 @@ public class PredictiveProjectile : Poolable, IProjectile
         gameObject.SetActive(false);
     }
 
-    public void OnCollisionEnter2D(Collision2D other)
+    public override void OnCollisionEnter2D(Collision2D other)
     {
         IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
         if (damageable == null) return;

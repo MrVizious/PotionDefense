@@ -3,20 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using DesignPatterns;
 
-public class FollowingProjectile : Poolable, IProjectile
+public class FollowingProjectile : Projectile
 {
 
-    [SerializeField]
-    private float _speed;
-    public float speed => _speed;
-    public float speedModifier { get; private set; }
     public float turningSpeed;
-    private float _damage;
-    public float damage => _damage;
-    public float damageModifier { get; private set; }
-    public float _secondsToDie;
-    public float secondsToDie => _secondsToDie;
-
     public Transform target;
 
     private Coroutine dieAfterCoroutine = null;
@@ -28,7 +18,7 @@ public class FollowingProjectile : Poolable, IProjectile
         Move();
     }
 
-    public void Move()
+    public override void Move()
     {
         if (target == null) Release();
         transform.rotation = Quaternion.RotateTowards(
@@ -39,7 +29,7 @@ public class FollowingProjectile : Poolable, IProjectile
         transform.position += transform.up * speed * Time.deltaTime;
     }
 
-    public void Shoot(Vector3 position, Quaternion rotation, int layer, Transform target = null)
+    public override void Shoot(Vector3 position, Quaternion rotation, int layer, Transform target = null)
     {
         if (target == null) Release();
         transform.position = position;
@@ -66,7 +56,7 @@ public class FollowingProjectile : Poolable, IProjectile
         gameObject.SetActive(false);
     }
 
-    public void OnCollisionEnter2D(Collision2D other)
+    public override void OnCollisionEnter2D(Collision2D other)
     {
         IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
         if (damageable == null) return;

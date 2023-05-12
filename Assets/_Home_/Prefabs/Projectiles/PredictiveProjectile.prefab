@@ -114,10 +114,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dab746a59b098be48a23c605be04d485, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  onRelease:
+    _PersistentCalls: []
+  speed: 4
+  speedModifier: 1
+  damage: 3
+  damageModifier: 1
+  secondsToDie: 30
   turningSpeed: 160
-  _damage: 5
-  _secondsToDie: 100
-  seekToHitDistance: 5
+  seekToHitDistance: 2
   predictiveMagnitude: 1
   target: {fileID: 0}

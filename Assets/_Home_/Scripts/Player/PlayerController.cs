@@ -55,7 +55,6 @@ public class PlayerController : StateMachine<PlayerState>, IDamageable
         ChangeToState(this.GetOrAddComponent<IdleState>());
         _currentHealth = playerData.maxHealth;
         if (onDie == null) onDie = new UltEvent();
-        onDie += () => { Debug.Log("Dead!"); };
     }
 
     public override void ChangeToPreviousState()

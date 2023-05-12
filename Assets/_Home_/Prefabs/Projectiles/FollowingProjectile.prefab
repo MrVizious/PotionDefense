@@ -114,7 +114,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2a5ac55eb6e5424e9976fce6f473168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  onRelease:
+    _PersistentCalls: []
+  speed: 3
+  speedModifier: 1
+  damage: 2
+  damageModifier: 1
+  secondsToDie: 20
   turningSpeed: 70
-  _secondsToDie: 100
   target: {fileID: 0}

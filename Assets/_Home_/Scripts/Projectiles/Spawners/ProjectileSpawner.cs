@@ -4,30 +4,32 @@ using UnityEngine;
 using DesignPatterns;
 using Sirenix.OdinInspector;
 
-public abstract class ProjectileSpawner<T> : MonoBehaviour where T : Poolable, IProjectile
+public abstract class ProjectileSpawner<T> : MonoBehaviour where T : Projectile
 {
     protected Pool<T> _projectilePool;
-    protected Pool<T> projectilePool
+    protected abstract Pool<T> projectilePool { get; }
+    /*
     {
         get
         {
             if (_projectilePool == null)
             {
-                _projectilePool = FindObjectOfType<ProjectilePool<T>>().projectilePool;
+                _projectilePool = FindObjectOfType<ProjectilePool>().projectilePool;
                 if (_projectilePool == null) Debug.LogError("There is no projectile pool!");
             }
             return _projectilePool;
         }
     }
+    */
 
 
     public virtual void Shoot(Vector3 position, Quaternion direction, int layer, Transform target = null)
     {
-        T newProjectile = projectilePool.Get();
+        var newProjectile = projectilePool.Get();
         newProjectile.Shoot(position, direction, layer, target);
     }
 
-    public virtual void ShootFromShooterTowards(Transform target = null)
+    public virtual void ShootFromShooter(Transform target = null)
     {
         Shoot(transform.position, transform.rotation, LayerMask.NameToLayer("EnemiesProjectiles"), target);
     }

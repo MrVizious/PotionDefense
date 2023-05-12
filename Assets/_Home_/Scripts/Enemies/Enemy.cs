@@ -59,6 +59,7 @@ public class Enemy : Poolable, IDamageable
     private void Start()
     {
         _currentHealth = enemyData.maxHealth;
+        GetComponentInChildren<ShooterController>().enemyData = enemyData;
         if (onDie == null) onDie = new UltEvent();
         onDie += Release;
     }

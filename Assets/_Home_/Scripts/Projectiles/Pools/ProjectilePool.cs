@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using DesignPatterns;
 
-public class ProjectilePool<T> : MonoBehaviour where T : Poolable, IProjectile
+public abstract class ProjectilePool<T> : MonoBehaviour where T : Projectile
 {
     public T projectilePrefab;
-    public Pool<T> projectilePool
+    public virtual Pool<T> projectilePool
     {
         get;
-        private set;
+        protected set;
     }
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         projectilePool = new Pool<T>(
             3, 50, prefab: projectilePrefab

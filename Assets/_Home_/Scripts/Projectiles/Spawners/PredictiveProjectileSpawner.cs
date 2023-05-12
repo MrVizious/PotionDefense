@@ -21,10 +21,31 @@ public class PredictiveProjectileSpawner : ProjectileSpawner<PredictiveProjectil
         }
     }
 
+    protected override Pool<PredictiveProjectile> projectilePool
+    {
+        get
+        {
+            if (_projectilePool == null)
+            {
+                _projectilePool = FindObjectOfType<PredictiveProjectilePool>().projectilePool;
+                if (_projectilePool == null) Debug.LogError("There is no projectile pool!");
+            }
+            return _projectilePool;
+        }
+    }
+
+    public override void ShootFromShooter(Transform target = null)
+    {
+        if (target == null) ShootFromShooterTowardsPlayer();
+        else
+        {
+            base.ShootFromShooter(target);
+        }
+    }
+
     [Button]
     public virtual void ShootFromShooterTowardsPlayer()
     {
-        Debug.Log("player from predictive spawner:" + player);
         Shoot(transform.position, transform.rotation, LayerMask.NameToLayer("EnemiesProjectiles"), player);
     }
 

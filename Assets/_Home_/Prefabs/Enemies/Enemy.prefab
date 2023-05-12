@@ -93,10 +93,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 445461322539783808}
-  - component: {fileID: 445461322539783811}
   - component: {fileID: 445461322539783809}
   - component: {fileID: 6519250389493286672}
   - component: {fileID: 7057802193968959731}
+  - component: {fileID: -617873429635572736}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
@@ -120,21 +120,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &445461322539783811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 445461322539783810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33aabe1a2dec93349b06e6e5dc51bc06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pathCreator: {fileID: 0}
-  endOfPathInstruction: 2
-  speed: 0.45
 --- !u!114 &445461322539783809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,12 +132,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0975c86121ab3b04c9f094e0489561b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onDie:
+  onRelease:
     _PersistentCalls: []
   onEndOfPath:
     _PersistentCalls: []
-  data: {fileID: 11400000, guid: 9ae3fe74bea8d3c4680461847dd917f9, type: 2}
+  enemyData: {fileID: 11400000, guid: 9ae3fe74bea8d3c4680461847dd917f9, type: 2}
   path: {fileID: 0}
+  speedModifier: 1
 --- !u!58 &6519250389493286672
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -190,3 +176,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &-617873429635572736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445461322539783810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33aabe1a2dec93349b06e6e5dc51bc06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathCreator: {fileID: 0}
+  endOfPathInstruction: 2
+  speed: 5

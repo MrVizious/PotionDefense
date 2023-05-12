@@ -1688,7 +1688,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathCreator: {fileID: 2022345945}
-  enemyPrefab: {fileID: 445461322539783809, guid: 478510e9f4f4a4a49a874175260dfe3c, type: 3}
+  enemyPrefab: {fileID: 9190615768393605909, guid: c4aa872081c4e114cb98daeab74b267b, type: 3}
 --- !u!4 &1656344953
 Transform:
   m_ObjectHideFlags: 0

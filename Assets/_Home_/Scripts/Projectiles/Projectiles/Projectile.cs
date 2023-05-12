@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using DesignPatterns;
 using UnityEngine;
 
-public abstract class Projectile : Poolable
+public abstract class Projectile : PoolableGO
 {
     public float speed;
     public float speedModifier;

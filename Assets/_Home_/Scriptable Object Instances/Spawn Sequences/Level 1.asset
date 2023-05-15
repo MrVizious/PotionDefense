@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3b3ba636170db49a14489e2bd9dc77, type: 3}
+  m_Name: Level 1
+  m_EditorClassIdentifier: 
+  spawnerActions:
+  - rid: 3955038230223781892
+  - rid: 3955038230223781893
+  - rid: 3955038230223781894
+  - rid: 3955038230223781895
+  - rid: 3955038230223781896
+  - rid: 3955038230223781897
+  references:
+    version: 2
+    RefIds:
+    - rid: 3955038230223781892
+      type: {class: SpawnerActionWait, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        secondsToWait: 2
+    - rid: 3955038230223781893
+      type: {class: SpawnerActionSpawn, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        enemyPrefab: {fileID: 3036011059039509174, guid: be4c0ffcf16d56441bfc515755a89551, type: 3}
+        spawner: {fileID: 0}
+    - rid: 3955038230223781894
+      type: {class: SpawnerActionWait, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        secondsToWait: 2
+    - rid: 3955038230223781895
+      type: {class: SpawnerActionSpawn, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        enemyPrefab: {fileID: 3036011059039509174, guid: be4c0ffcf16d56441bfc515755a89551, type: 3}
+        spawner: {fileID: 0}
+    - rid: 3955038230223781896
+      type: {class: SpawnerActionWait, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        secondsToWait: 2
+    - rid: 3955038230223781897
+      type: {class: SpawnerActionSpawn, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        enemyPrefab: {fileID: 3036011059039509174, guid: be4c0ffcf16d56441bfc515755a89551, type: 3}
+        spawner: {fileID: 0}

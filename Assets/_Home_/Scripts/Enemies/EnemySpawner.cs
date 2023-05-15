@@ -8,10 +8,16 @@ using PathCreation;
 public class EnemySpawner : MonoBehaviour
 {
     public PathCreator pathCreator;
-    public Enemy enemyPrefab;
+    public SpawnSequence spawnSequence;
+    private int currentActionIndex = 0;
     private Dictionary<Enemy, EnemyPool> enemyPools = new Dictionary<Enemy, EnemyPool>();
 
 
+    private void Start()
+    {
+        currentActionIndex = 0;
+        ExecuteCurrentAction();
+    }
     private EnemyPool GetEnemyPool(Enemy prefab)
     {
         foreach (EnemyPool pool in FindObjectsByType<EnemyPool>(FindObjectsSortMode.None))
@@ -41,5 +47,23 @@ public class EnemySpawner : MonoBehaviour
         Enemy newEnemy = enemyPool.Get();
         newEnemy.transform.position = transform.position;
         newEnemy.path = pathCreator;
+    }
+
+    private void ExecuteCurrentAction()
+    {
+        if (currentActionIndex >= spawnSequence.spawnerActions.Count) return;
+        spawnSequence.spawnerActions[currentActionIndex].onEnd += ExecuteNextAction;
+        if (spawnSequence.spawnerActions[currentActionIndex] is SpawnerActionSpawn)
+        {
+            ((SpawnerActionSpawn)spawnSequence.spawnerActions[currentActionIndex]).spawner = this;
+        }
+        spawnSequence.spawnerActions[currentActionIndex].Begin();
+    }
+
+    private void ExecuteNextAction()
+    {
+        spawnSequence.spawnerActions[currentActionIndex].onEnd -= ExecuteNextAction;
+        currentActionIndex++;
+        ExecuteCurrentAction();
     }
 }

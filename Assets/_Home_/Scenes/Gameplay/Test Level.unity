@@ -1578,6 +1578,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1656344953}
   - component: {fileID: 1656344952}
+  - component: {fileID: 1656344954}
   m_Layer: 0
   m_Name: Enemy Spawner
   m_TagString: Untagged
@@ -1614,6 +1615,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1656344954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656344951}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3b3ba636170db49a14489e2bd9dc77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnerActions:
+  - rid: 3955038230223781888
+  - rid: 3955038230223781889
+  references:
+    version: 2
+    RefIds:
+    - rid: 3955038230223781888
+      type: {class: SpawnerActionWait, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        secondsToWait: 3
+    - rid: 3955038230223781889
+      type: {class: SpawnerActionWait, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        secondsToWait: 4
 --- !u!1 &1747770514
 GameObject:
   m_ObjectHideFlags: 0

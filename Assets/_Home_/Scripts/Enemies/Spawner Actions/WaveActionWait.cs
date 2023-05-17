@@ -4,7 +4,7 @@ using UnityEngine;
 using Cysharp.Threading.Tasks;
 
 [System.Serializable]
-public class SpawnerActionWait : SpawnerAction
+public class WaveActionWait : WaveAction
 {
     public float secondsToWait;
     public override void Begin()

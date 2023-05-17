@@ -4,7 +4,7 @@ using UnityEngine;
 using UltEvents;
 
 [System.Serializable]
-public abstract class SpawnerAction
+public abstract class WaveAction
 {
     public UltEvent onEnd;
 

@@ -8,7 +8,7 @@ using PathCreation;
 public class EnemySpawner : MonoBehaviour
 {
     public PathCreator pathCreator;
-    public SpawnSequence spawnSequence;
+    public Wave spawnSequence;
     private int currentActionIndex = 0;
     private Dictionary<Enemy, EnemyPool> enemyPools = new Dictionary<Enemy, EnemyPool>();
 
@@ -53,9 +53,9 @@ public class EnemySpawner : MonoBehaviour
     {
         if (currentActionIndex >= spawnSequence.spawnerActions.Count) return;
         spawnSequence.spawnerActions[currentActionIndex].onEnd += ExecuteNextAction;
-        if (spawnSequence.spawnerActions[currentActionIndex] is SpawnerActionSpawn)
+        if (spawnSequence.spawnerActions[currentActionIndex] is WaveActionSpawn)
         {
-            ((SpawnerActionSpawn)spawnSequence.spawnerActions[currentActionIndex]).spawner = this;
+            ((WaveActionSpawn)spawnSequence.spawnerActions[currentActionIndex]).spawner = this;
         }
         spawnSequence.spawnerActions[currentActionIndex].Begin();
     }

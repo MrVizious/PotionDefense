@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnerActionSpawn : SpawnerAction
+public class WaveActionSpawn : WaveAction
 {
     public Enemy enemyPrefab;
     [HideInInspector]

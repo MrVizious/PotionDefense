@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3b3ba636170db49a14489e2bd9dc77, type: 3}
+  m_Name: Wave 01-02
+  m_EditorClassIdentifier: 
+  spawnerActions:
+  - rid: 3955038277545754624
+  - rid: 3955038277545754625
+  - rid: 3955038277545754626
+  - rid: 3955038277545754627
+  - rid: 3955038277545754628
+  - rid: 3955038277545754629
+  - rid: 3955038277545754630
+  - rid: 3955038277545754631
+  - rid: 3955038277545754632
+  - rid: 3955038277545754633
+  - rid: 3955038277545754635
+  - rid: 3955038277545754634
+  - rid: 3955038277545754638
+  references:
+    version: 2
+    RefIds:
+    - rid: 3955038277545754624
+      type: {class: SpawnerActionSpawn, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        enemyPrefab: {fileID: 3036011059039509174, guid: be4c0ffcf16d56441bfc515755a89551, type: 3}
+        spawner: {fileID: 0}
+    - rid: 3955038277545754625
+      type: {class: SpawnerActionWait, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        secondsToWait: 1
+    - rid: 3955038277545754626
+      type: {class: SpawnerActionSpawn, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        enemyPrefab: {fileID: 3036011059039509174, guid: be4c0ffcf16d56441bfc515755a89551, type: 3}
+        spawner: {fileID: 0}
+    - rid: 3955038277545754627
+      type: {class: SpawnerActionWait, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        secondsToWait: 1
+    - rid: 3955038277545754628
+      type: {class: SpawnerActionSpawn, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        enemyPrefab: {fileID: 3036011059039509174, guid: be4c0ffcf16d56441bfc515755a89551, type: 3}
+        spawner: {fileID: 0}
+    - rid: 3955038277545754629
+      type: {class: SpawnerActionWait, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        secondsToWait: 1
+    - rid: 3955038277545754630
+      type: {class: SpawnerActionSpawn, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        enemyPrefab: {fileID: 3036011059039509174, guid: be4c0ffcf16d56441bfc515755a89551, type: 3}
+        spawner: {fileID: 0}
+    - rid: 3955038277545754631
+      type: {class: SpawnerActionWait, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        secondsToWait: 3
+    - rid: 3955038277545754632
+      type: {class: SpawnerActionSpawn, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        enemyPrefab: {fileID: 9190615768393605909, guid: 8536a2753553e4549a6e6b7f7431aa51, type: 3}
+        spawner: {fileID: 0}
+    - rid: 3955038277545754633
+      type: {class: SpawnerActionWait, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        secondsToWait: 0.5
+    - rid: 3955038277545754634
+      type: {class: SpawnerActionWait, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        secondsToWait: 2
+    - rid: 3955038277545754635
+      type: {class: SpawnerActionSpawn, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        enemyPrefab: {fileID: 9190615768393605909, guid: 8536a2753553e4549a6e6b7f7431aa51, type: 3}
+        spawner: {fileID: 0}
+    - rid: 3955038277545754638
+      type: {class: SpawnerActionSpawn, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        enemyPrefab: {fileID: 3036011059039509174, guid: eb9ca8684a2c04b469c4b3073c0f0bb2, type: 3}
+        spawner: {fileID: 0}

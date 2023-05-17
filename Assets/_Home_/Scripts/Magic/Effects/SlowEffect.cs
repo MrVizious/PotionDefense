@@ -10,6 +10,7 @@ public class SlowEffect : Effect
     public override void Begin()
     {
         base.Begin();
+        if (enemy == null) return;
         enemy.speedModifier = speedModifier;
     }
 

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5954299d63451e64c978454c4e6f45a4, type: 3}
-  m_Name: Simple
+  m_Name: Predictive
   m_EditorClassIdentifier: 
-  speed: 5
-  damage: 5
-  secondsToDie: 10
+  speed: 8
+  damage: 7
+  secondsToDie: 30

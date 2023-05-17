@@ -15,6 +15,8 @@ public abstract class Effect : MonoBehaviour
 
     public virtual void Begin()
     {
+        if (enemy == null) return;
+        if (!enemy.isActiveAndEnabled) return;
         if (durationInSeconds > 0f)
         {
             endEffectCoroutine = StartCoroutine(EndEffectCountdown(durationInSeconds));

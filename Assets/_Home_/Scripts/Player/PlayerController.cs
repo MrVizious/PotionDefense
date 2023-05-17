@@ -35,8 +35,11 @@ public class PlayerController : StateMachine<PlayerState>, IDamageable
         }
     }
 
+    [ShowInInspector]
     public UltEvent onDamaged { get; set; }
+    [ShowInInspector]
     public UltEvent onHealed { get; set; }
+    [ShowInInspector]
     public UltEvent onDie { get; set; }
 
     [HideInInspector] public Vector2 lastMovementInput = Vector2.zero;

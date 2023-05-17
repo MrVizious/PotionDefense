@@ -9,7 +9,6 @@ public class SpawnerActionWait : SpawnerAction
     public float secondsToWait;
     public override void Begin()
     {
-        Debug.Log("Going to wait for " + secondsToWait + " seconds!");
         Wait((int)(secondsToWait * 1000)).Forget();
     }
 

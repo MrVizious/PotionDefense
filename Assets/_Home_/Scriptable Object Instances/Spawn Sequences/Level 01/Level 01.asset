@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5954299d63451e64c978454c4e6f45a4, type: 3}
-  m_Name: Simple
+  m_Script: {fileID: 11500000, guid: 5fed5abc28f86d54a9f7835b2acee07d, type: 3}
+  m_Name: Level 01
   m_EditorClassIdentifier: 
-  speed: 5
-  damage: 5
-  secondsToDie: 10
+  waves:
+  - {fileID: 11400000, guid: 00ac3bc3d2a90604f8eab592c8725ae1, type: 2}

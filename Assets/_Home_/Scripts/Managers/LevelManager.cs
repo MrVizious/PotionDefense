@@ -7,7 +7,7 @@ using ExtensionMethods;
 public class LevelManager : StateMachine<LevelState>
 {
     public PlayerController player;
-    public LevelData levelData;
+    public int currentWaveIndex = 0;
 
     protected override void Awake()
     {
@@ -15,7 +15,8 @@ public class LevelManager : StateMachine<LevelState>
         if (player == null) player = FindObjectOfType<PlayerController>();
         player.onDie += PlayerDied;
 
-        ChangeToState(this.GetOrAddComponent<LevelStartState>());
+        currentWaveIndex = 0;
+        ChangeToState(this.GetOrAddComponent<BuyRoundState>());
     }
 
     public void PlayerDied()

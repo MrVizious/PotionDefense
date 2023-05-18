@@ -7,8 +7,9 @@ using Cysharp.Threading.Tasks;
 public class WaveActionWait : WaveAction
 {
     public float secondsToWait;
-    public override void Begin()
+    public override void Begin(EnemySpawner newSpawner)
     {
+        base.Begin(newSpawner);
         Wait((int)(secondsToWait * 1000)).Forget();
     }
 

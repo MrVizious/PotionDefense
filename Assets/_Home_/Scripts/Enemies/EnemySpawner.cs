@@ -4,20 +4,55 @@ using UnityEngine;
 using DesignPatterns;
 using Sirenix.OdinInspector;
 using PathCreation;
+using UltEvents;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public LevelData levelData;
     public PathCreator pathCreator;
-    public Wave spawnSequence;
+    public UltEvent onWaveEnded = new UltEvent();
+    public int currentWaveIndex = 0;
     private int currentActionIndex = 0;
+    private Wave currentWave
+    {
+        get => levelData.waves[currentWaveIndex];
+    }
     private Dictionary<Enemy, EnemyPool> enemyPools = new Dictionary<Enemy, EnemyPool>();
+
+    private int _spawnedEnemiesCounter = 0;
+    private int spawnedEnemiesCounter
+    {
+        get => _spawnedEnemiesCounter;
+        set
+        {
+            _spawnedEnemiesCounter = value;
+            if (spawnedEnemiesCounter <= 0 && currentActionIndex >= currentWave.waveActions.Count)
+            {
+                onWaveEnded.Invoke();
+            }
+        }
+    }
 
 
     private void Start()
     {
+        currentWaveIndex = 0;
+        currentActionIndex = 0;
+        spawnedEnemiesCounter = 0;
+    }
+
+    public void ExecuteWave(int newWaveIndex)
+    {
+        currentWaveIndex = newWaveIndex;
+        spawnedEnemiesCounter = 0;
+        ExecuteCurrentWave();
+    }
+    public void ExecuteCurrentWave()
+    {
         currentActionIndex = 0;
         ExecuteCurrentAction();
     }
+
     private EnemyPool GetEnemyPool(Enemy prefab)
     {
         foreach (EnemyPool pool in FindObjectsByType<EnemyPool>(FindObjectsSortMode.None))
@@ -47,22 +82,23 @@ public class EnemySpawner : MonoBehaviour
         Enemy newEnemy = enemyPool.Get();
         newEnemy.transform.position = transform.position;
         newEnemy.path = pathCreator;
+
+        spawnedEnemiesCounter++;
+
+        newEnemy.onDie += () => spawnedEnemiesCounter--;
+        newEnemy.onEndOfPath += () => spawnedEnemiesCounter--;
     }
 
     private void ExecuteCurrentAction()
     {
-        if (currentActionIndex >= spawnSequence.spawnerActions.Count) return;
-        spawnSequence.spawnerActions[currentActionIndex].onEnd += ExecuteNextAction;
-        if (spawnSequence.spawnerActions[currentActionIndex] is WaveActionSpawn)
-        {
-            ((WaveActionSpawn)spawnSequence.spawnerActions[currentActionIndex]).spawner = this;
-        }
-        spawnSequence.spawnerActions[currentActionIndex].Begin();
+        if (currentActionIndex >= currentWave.waveActions.Count) return;
+        currentWave.waveActions[currentActionIndex].onEnd += ExecuteNextAction;
+        currentWave.waveActions[currentActionIndex].Begin(this);
     }
 
     private void ExecuteNextAction()
     {
-        spawnSequence.spawnerActions[currentActionIndex].onEnd -= ExecuteNextAction;
+        currentWave.waveActions[currentActionIndex].onEnd -= ExecuteNextAction;
         currentActionIndex++;
         ExecuteCurrentAction();
     }

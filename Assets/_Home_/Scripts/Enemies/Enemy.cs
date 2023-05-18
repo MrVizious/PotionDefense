@@ -83,7 +83,6 @@ public class Enemy : Poolable, IDamageable
     }
     public override void OnPoolRelease()
     {
-        Debug.Log("Releasing");
         gameObject.SetActive(false);
     }
 

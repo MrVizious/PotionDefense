@@ -947,7 +947,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  levelData: {fileID: 0}
 --- !u!4 &1176190428
 Transform:
   m_ObjectHideFlags: 0
@@ -1559,8 +1558,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f88a3a9d75b171499662667dd35815b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelData: {fileID: 11400000, guid: 3364cf9a013154644b849fb3f5ffe11d, type: 2}
   pathCreator: {fileID: 2022345945}
-  spawnSequence: {fileID: 11400000, guid: 0081b811b1a1ad745b832c93147ad2ca, type: 2}
+  wave: {fileID: 11400000, guid: 00ac3bc3d2a90604f8eab592c8725ae1, type: 2}
 --- !u!1 &1747770514
 GameObject:
   m_ObjectHideFlags: 0

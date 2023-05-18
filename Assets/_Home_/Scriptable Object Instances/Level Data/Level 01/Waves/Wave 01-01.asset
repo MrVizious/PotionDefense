@@ -12,75 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da3b3ba636170db49a14489e2bd9dc77, type: 3}
   m_Name: Wave 01-01
   m_EditorClassIdentifier: 
-  spawnerActions:
-  - rid: 3955038230223781893
-  - rid: 3955038230223781894
-  - rid: 3955038230223781895
-  - rid: 3955038230223781896
-  - rid: 3955038230223781897
-  - rid: 3955038259146129408
-  - rid: 3955038259146129410
-  - rid: 3955038259146129409
-  - rid: 3955038259146129411
+  waveActions:
+  - rid: 3955038277545754644
   references:
     version: 2
     RefIds:
-    - rid: 3955038230223781893
-      type: {class: SpawnerActionSpawn, ns: , asm: Assembly-CSharp}
+    - rid: 3955038277545754644
+      type: {class: WaveActionRepeatedSpawn, ns: , asm: Assembly-CSharp}
       data:
         onEnd:
           _PersistentCalls: []
         enemyPrefab: {fileID: 3036011059039509174, guid: be4c0ffcf16d56441bfc515755a89551, type: 3}
-        spawner: {fileID: 0}
-    - rid: 3955038230223781894
-      type: {class: SpawnerActionWait, ns: , asm: Assembly-CSharp}
-      data:
-        onEnd:
-          _PersistentCalls: []
-        secondsToWait: 2
-    - rid: 3955038230223781895
-      type: {class: SpawnerActionSpawn, ns: , asm: Assembly-CSharp}
-      data:
-        onEnd:
-          _PersistentCalls: []
-        enemyPrefab: {fileID: 3036011059039509174, guid: be4c0ffcf16d56441bfc515755a89551, type: 3}
-        spawner: {fileID: 0}
-    - rid: 3955038230223781896
-      type: {class: SpawnerActionWait, ns: , asm: Assembly-CSharp}
-      data:
-        onEnd:
-          _PersistentCalls: []
-        secondsToWait: 2
-    - rid: 3955038230223781897
-      type: {class: SpawnerActionSpawn, ns: , asm: Assembly-CSharp}
-      data:
-        onEnd:
-          _PersistentCalls: []
-        enemyPrefab: {fileID: 3036011059039509174, guid: be4c0ffcf16d56441bfc515755a89551, type: 3}
-        spawner: {fileID: 0}
-    - rid: 3955038259146129408
-      type: {class: SpawnerActionWait, ns: , asm: Assembly-CSharp}
-      data:
-        onEnd:
-          _PersistentCalls: []
-        secondsToWait: 4
-    - rid: 3955038259146129409
-      type: {class: SpawnerActionWait, ns: , asm: Assembly-CSharp}
-      data:
-        onEnd:
-          _PersistentCalls: []
-        secondsToWait: 0.5
-    - rid: 3955038259146129410
-      type: {class: SpawnerActionSpawn, ns: , asm: Assembly-CSharp}
-      data:
-        onEnd:
-          _PersistentCalls: []
-        enemyPrefab: {fileID: 9190615768393605909, guid: 8536a2753553e4549a6e6b7f7431aa51, type: 3}
-        spawner: {fileID: 0}
-    - rid: 3955038259146129411
-      type: {class: SpawnerActionSpawn, ns: , asm: Assembly-CSharp}
-      data:
-        onEnd:
-          _PersistentCalls: []
-        enemyPrefab: {fileID: 9190615768393605909, guid: 8536a2753553e4549a6e6b7f7431aa51, type: 3}
-        spawner: {fileID: 0}
+        secondsBetweenSpawns: 1.5
+        enemiesToSpawn: 4

@@ -8,5 +8,5 @@ using Sirenix.OdinInspector;
 public class Wave : ScriptableObject
 {
     [SerializeReference]
-    public List<WaveAction> spawnerActions;
+    public List<WaveAction> waveActions;
 }

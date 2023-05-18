@@ -7,6 +7,10 @@ using UltEvents;
 public abstract class WaveAction
 {
     public UltEvent onEnd;
+    protected EnemySpawner spawner;
 
-    public abstract void Begin();
+    public virtual void Begin(EnemySpawner newSpawner)
+    {
+        spawner = newSpawner;
+    }
 }

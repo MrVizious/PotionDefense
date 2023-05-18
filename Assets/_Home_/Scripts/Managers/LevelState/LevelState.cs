@@ -11,7 +11,10 @@ public abstract class LevelState : MonoBehaviour, State<LevelState>
         protected set;
     }
 
-    public virtual void Enter(StateMachine<LevelState> newStateMachine) { }
+    public virtual void Enter(StateMachine<LevelState> newStateMachine)
+    {
+        stateMachine = newStateMachine;
+    }
 
     public virtual void Exit() { }
 }

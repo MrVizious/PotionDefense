@@ -6,10 +6,10 @@ public class WaveActionSpawn : WaveAction
 {
     public Enemy enemyPrefab;
     [HideInInspector]
-    public EnemySpawner spawner;
 
-    public override void Begin()
+    public override void Begin(EnemySpawner newSpawner)
     {
+        base.Begin(newSpawner);
         spawner.Spawn(enemyPrefab);
         onEnd.Invoke();
     }

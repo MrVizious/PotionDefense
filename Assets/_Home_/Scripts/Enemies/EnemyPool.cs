@@ -41,6 +41,8 @@ public class EnemyPool : MonoBehaviour
     }
     public Enemy Get()
     {
-        return enemyPool.Get();
+        Enemy enemy = enemyPool.Get();
+        enemy.transform.SetParent(transform);
+        return enemy;
     }
 }

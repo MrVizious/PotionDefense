@@ -41,6 +41,8 @@ public class ProjectilePool : MonoBehaviour
     }
     public Projectile Get()
     {
-        return projectilePool.Get();
+        Projectile projectile = projectilePool.Get();
+        projectile.transform.SetParent(transform);
+        return projectile;
     }
 }

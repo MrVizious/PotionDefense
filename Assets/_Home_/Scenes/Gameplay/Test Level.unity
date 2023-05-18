@@ -927,6 +927,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1176190428}
   - component: {fileID: 1176190427}
+  - component: {fileID: 1176190430}
+  - component: {fileID: 1176190429}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -946,7 +948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d5eb7fdba2664d4aaa04436ab09bdc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  currentWaveIndex: 0
 --- !u!4 &1176190428
 Transform:
   m_ObjectHideFlags: 0
@@ -962,6 +964,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1176190429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176190426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 003c25630808c7243847bd9149749434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _AwakeEvent:
+    _PersistentCalls: []
+  _StartEvent:
+    _PersistentCalls:
+    - _Target: {fileID: 1176190430}
+      _MethodName: BeginWave
+      _PersistentArguments: []
+  _EnableEvent:
+    _PersistentCalls: []
+  _DisableEvent:
+    _PersistentCalls: []
+  _DestroyEvent:
+    _PersistentCalls: []
+--- !u!114 &1176190430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1176190426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e0b9031108966f41943df0a7a8b25cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1221838372
 GameObject:
   m_ObjectHideFlags: 0
@@ -1560,7 +1599,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelData: {fileID: 11400000, guid: 3364cf9a013154644b849fb3f5ffe11d, type: 2}
   pathCreator: {fileID: 2022345945}
-  wave: {fileID: 11400000, guid: 00ac3bc3d2a90604f8eab592c8725ae1, type: 2}
+  onWaveEnded:
+    _PersistentCalls: []
+  currentWaveIndex: 0
 --- !u!1 &1747770514
 GameObject:
   m_ObjectHideFlags: 0

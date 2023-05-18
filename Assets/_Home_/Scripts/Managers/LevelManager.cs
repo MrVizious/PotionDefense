@@ -6,8 +6,8 @@ using ExtensionMethods;
 
 public class LevelManager : StateMachine<LevelState>
 {
-    public PlayerController player;
     public int currentWaveIndex = 0;
+    private PlayerController player;
 
     protected override void Awake()
     {

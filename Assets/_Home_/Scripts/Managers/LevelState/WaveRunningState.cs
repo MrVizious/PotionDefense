@@ -18,7 +18,7 @@ public class WaveRunningState : LevelState
             _endedSpawnersCounter = value;
             if (endedSpawnersCounter >= spawners.Count)
             {
-                OnWaveEnded();
+                EndWave();
             }
         }
     }
@@ -59,12 +59,13 @@ public class WaveRunningState : LevelState
         endedSpawnersCounter++;
     }
 
-    private void OnWaveEnded()
+    private void EndWave()
     {
         Debug.Log("Wave ended!");
         onWaveEnded.Invoke();
-        if (((LevelManager)stateMachine).currentWaveIndex >= spawners[0].levelData.waves.Count)
+        if (((LevelManager)stateMachine).currentWaveIndex >= spawners[0].levelData.waves.Count - 1)
         {
+            Debug.Log("Going to end state");
             stateMachine.ChangeToState(this.GetOrAddComponent<LevelEndedState>());
             return;
         }

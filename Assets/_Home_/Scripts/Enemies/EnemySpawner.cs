@@ -5,6 +5,7 @@ using DesignPatterns;
 using Sirenix.OdinInspector;
 using PathCreation;
 using UltEvents;
+using Cysharp.Threading.Tasks;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -19,25 +20,12 @@ public class EnemySpawner : MonoBehaviour
     }
     private Dictionary<Enemy, EnemyPool> enemyPools = new Dictionary<Enemy, EnemyPool>();
 
-    private int _spawnedEnemiesCounter = 0;
-    private int spawnedEnemiesCounter
-    {
-        get => _spawnedEnemiesCounter;
-        set
-        {
-            _spawnedEnemiesCounter = value;
-            if (spawnedEnemiesCounter <= 0 && currentActionIndex >= currentWave.waveActions.Count)
-            {
-                onWaveEnded.Invoke();
-            }
-        }
-    }
+    private int spawnedEnemiesCounter = 0;
 
 
     private void Start()
     {
         currentWaveIndex = 0;
-        currentActionIndex = 0;
         spawnedEnemiesCounter = 0;
     }
 
@@ -45,12 +33,15 @@ public class EnemySpawner : MonoBehaviour
     {
         currentWaveIndex = newWaveIndex;
         spawnedEnemiesCounter = 0;
-        ExecuteCurrentWave();
-    }
-    public void ExecuteCurrentWave()
-    {
         currentActionIndex = 0;
+        WaveEndedChecker().Forget();
         ExecuteCurrentAction();
+    }
+
+    private async UniTask WaveEndedChecker()
+    {
+        await UniTask.WaitUntil(() => currentActionIndex >= currentWave.waveActions.Count && spawnedEnemiesCounter <= 0);
+        onWaveEnded.Invoke();
     }
 
     private EnemyPool GetEnemyPool(Enemy prefab)
@@ -85,8 +76,7 @@ public class EnemySpawner : MonoBehaviour
 
         spawnedEnemiesCounter++;
 
-        newEnemy.onDie += () => spawnedEnemiesCounter--;
-        newEnemy.onEndOfPath += () => spawnedEnemiesCounter--;
+        newEnemy.onRelease += () => spawnedEnemiesCounter--;
     }
 
     private void ExecuteCurrentAction()

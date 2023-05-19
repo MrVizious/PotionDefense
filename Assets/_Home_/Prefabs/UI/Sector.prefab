@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7377226623196431233}
   m_Layer: 0
-  m_Name: Wheel
+  m_Name: Sector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

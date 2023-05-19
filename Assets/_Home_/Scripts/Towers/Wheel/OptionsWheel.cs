@@ -2,42 +2,62 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TypeReferences;
 
 public class OptionsWheel : MonoBehaviour
 {
-    public GameObject wheelPrefab;
+    public GameObject sectorPrefab;
     public float angleOffset = 5f;
-    public List<OptionsWheelActions> actions;
+    public List<GameObject> actionGameObjects;
 
 
-    private int numberOfSectors;
+    private int numberOfSectors
+    {
+        get => actionGameObjects.Count;
+    }
     private float angleWidthTotalPerSector, angleCenterPerSector;
     private Tower tower;
 
     private void Start()
     {
-        CalculateAngles();
-        SpawnSectors();
+        if (numberOfSectors > 1)
+        {
+            RenderSectors();
+        }
     }
 
+    public void ClearActions()
+    {
+        foreach (GameObject actionGO in actionGameObjects)
+        {
+            Destroy(actionGO);
+        }
+        actionGameObjects.Clear();
+    }
+
+    public void AddAction(TypeReference actionTypeToAdd)
+    {
+        actionGameObjects.Add(Instantiate(sectorPrefab, transform));
+        RenderSectors();
+    }
     private void CalculateAngles()
     {
-        numberOfSectors = actions.Count;
         if (numberOfSectors < 2) return;
         angleCenterPerSector = 360f / numberOfSectors;
         angleWidthTotalPerSector = angleCenterPerSector - angleOffset;
     }
 
-    private void SpawnSectors()
+
+    private void RenderSectors()
     {
+        CalculateAngles();
         int i = 0;
-        foreach (OptionsWheelActions action in actions)
+        foreach (GameObject actionGO in actionGameObjects)
         {
-            GameObject sector = Instantiate(wheelPrefab, transform);
-            sector.name = "Sector_" + i;
-            Image image = sector.GetComponentInChildren<Image>();
+            actionGO.name = "Sector_" + i;
+            Image image = actionGO.GetComponentInChildren<Image>();
             image.fillAmount = angleWidthTotalPerSector / 360f;
-            sector.transform.rotation = Quaternion.Euler(0f, 0f,
+            actionGO.transform.rotation = Quaternion.Euler(0f, 0f,
                 // Angle calculation for z axis
                 angleCenterPerSector * i - angleCenterPerSector / 2 + angleOffset / 2);
             i++;

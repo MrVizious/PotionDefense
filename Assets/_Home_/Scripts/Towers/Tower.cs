@@ -44,6 +44,7 @@ public class Tower : MonoBehaviour
     {
         SimpleProjectile projectile = other.GetComponent<SimpleProjectile>();
         if (projectile == null) return;
+        if (data.projectileModifierType == null) return;
         projectile.GetOrAddComponent(data.projectileModifierType);
     }
 }

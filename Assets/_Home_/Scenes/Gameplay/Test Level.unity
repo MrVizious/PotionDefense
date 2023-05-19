@@ -1615,14 +1615,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelPrefab: {fileID: 7377226623196431232, guid: 2bdb968390874eb4db216777131eab6a, type: 3}
-  angleOffset: 15
+  angleOffset: 5
   actions:
   - {fileID: 525601000}
   - {fileID: 624677043}
   - {fileID: 535651624}
-  numberOfSectors: 0
-  angleWidthTotalPerSector: 0
-  angleCenterPerSector: 0
+  - {fileID: 525601000}
+  - {fileID: 525601000}
 --- !u!1 &1577263029
 GameObject:
   m_ObjectHideFlags: 0

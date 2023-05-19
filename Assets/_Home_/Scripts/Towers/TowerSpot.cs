@@ -6,11 +6,23 @@ public class TowerSpot : MonoBehaviour
 {
 
     public GameObject sign;
+    public Tower tower
+    {
+        get
+        {
+            if (_tower == null) _tower = GetComponentInChildren<Tower>();
+            return _tower;
+        }
+    }
+
+
+    private Tower _tower;
     private PlayerController player;
     private void Start()
     {
         sign.SetActive(false);
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         player = other.GetComponent<PlayerController>();

@@ -20,13 +20,14 @@ public class Tower : MonoBehaviour
     [Button]
     public void Evolve()
     {
-        if (data.nextLevel == null)
-        {
-            Debug.Log("No more levels to evolve to");
-            return;
-        }
+        if (!CanEvolve()) return;
         data = data.nextLevel;
         UpdateRadius();
+    }
+
+    public bool CanEvolve()
+    {
+        return data.nextLevel != null;
     }
 
     private void UpdateRadius()
@@ -43,7 +44,7 @@ public class Tower : MonoBehaviour
     {
         SimpleProjectile projectile = other.GetComponent<SimpleProjectile>();
         if (projectile == null) return;
-        projectile.GetOrAddComponent<SlowModifier>();
+        projectile.GetOrAddComponent(data.projectileModifierType);
     }
 }
 

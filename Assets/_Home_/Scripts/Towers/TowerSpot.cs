@@ -17,6 +17,7 @@ public class TowerSpot : MonoBehaviour
     }
 
 
+    [SerializeField]
     private Tower _tower;
     private PlayerController player;
     private OptionsWheel wheel;
@@ -56,7 +57,7 @@ public class TowerSpot : MonoBehaviour
         ChangeToHidden();
     }
 
-    private void ChangeToHidden()
+    public void ChangeToHidden()
     {
         if (state != TowerSpotState.Hidden)
         {
@@ -67,7 +68,7 @@ public class TowerSpot : MonoBehaviour
         wheel.gameObject.SetActive(false);
     }
 
-    private void ChangeToPrompt()
+    public void ChangeToPrompt()
     {
         if (state != TowerSpotState.Prompt)
         {
@@ -78,7 +79,7 @@ public class TowerSpot : MonoBehaviour
         wheel.gameObject.SetActive(false);
     }
 
-    private void ChangeToSelecting()
+    public void ChangeToSelecting()
     {
         if (state != TowerSpotState.Selecting)
         {
@@ -88,14 +89,12 @@ public class TowerSpot : MonoBehaviour
         promptSign.SetActive(false);
         wheel.gameObject.SetActive(true);
         wheel.ClearActions();
-        if (tower == null)
+        if (tower != null)
         {
-            //if (tower.CanEvolve())
-            //{
-            //    wheel.AddAction(typeof(EvolveWheelAction));
-            //}
-            wheel.AddAction(typeof(SellWheelAction));
-            wheel.AddAction(typeof(SellWheelAction));
+            if (tower.CanEvolve())
+            {
+                wheel.AddAction(typeof(EvolveWheelAction));
+            }
             wheel.AddAction(typeof(SellWheelAction));
         }
     }

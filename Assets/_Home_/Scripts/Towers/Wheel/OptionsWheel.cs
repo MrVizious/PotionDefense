@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TypeReferences;
+using ExtensionMethods;
 
 public class OptionsWheel : MonoBehaviour
 {
@@ -37,7 +38,9 @@ public class OptionsWheel : MonoBehaviour
 
     public void AddAction(TypeReference actionTypeToAdd)
     {
-        actionGameObjects.Add(Instantiate(sectorPrefab, transform));
+        GameObject newGO = Instantiate(sectorPrefab, transform);
+        newGO.GetOrAddComponent(actionTypeToAdd);
+        actionGameObjects.Add(newGO);
         RenderSectors();
     }
     private void CalculateAngles()
@@ -60,9 +63,12 @@ public class OptionsWheel : MonoBehaviour
             actionGO.transform.rotation = Quaternion.Euler(0f, 0f,
                 // Angle calculation for z axis
                 (angleCenterPerSector * i) - angleCenterPerSector / 2 - angleOffset / 2);
+            Debug.Log(actionGO.GetComponent<OptionsWheelAction>());
+            actionGO.GetComponentInChildren<Button>().onClick.AddListener(
+                () => actionGO.GetComponentInChildren<OptionsWheelAction>()
+                              .Execute(transform.parent.GetComponentInChildren<TowerSpot>())
+            );
             i++;
         }
     }
-
-
 }

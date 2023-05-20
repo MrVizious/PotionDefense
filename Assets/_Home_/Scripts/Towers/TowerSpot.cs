@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 
 public class TowerSpot : MonoBehaviour
 {
-
     public GameObject promptSign;
     public Tower tower
     {

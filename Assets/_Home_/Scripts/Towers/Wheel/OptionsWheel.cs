@@ -59,7 +59,7 @@ public class OptionsWheel : MonoBehaviour
             image.fillAmount = angleWidthTotalPerSector / 360f;
             actionGO.transform.rotation = Quaternion.Euler(0f, 0f,
                 // Angle calculation for z axis
-                angleCenterPerSector * i - angleCenterPerSector / 2 + angleOffset / 2);
+                (angleCenterPerSector * i) - angleCenterPerSector / 2 - angleOffset / 2);
             i++;
         }
     }

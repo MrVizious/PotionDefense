@@ -88,12 +88,14 @@ public class TowerSpot : MonoBehaviour
         promptSign.SetActive(false);
         wheel.gameObject.SetActive(true);
         wheel.ClearActions();
-        if (tower != null)
+        if (tower == null)
         {
-            if (tower.CanEvolve())
-            {
-                wheel.AddAction(typeof(EvolveWheelAction));
-            }
+            //if (tower.CanEvolve())
+            //{
+            //    wheel.AddAction(typeof(EvolveWheelAction));
+            //}
+            wheel.AddAction(typeof(SellWheelAction));
+            wheel.AddAction(typeof(SellWheelAction));
             wheel.AddAction(typeof(SellWheelAction));
         }
     }

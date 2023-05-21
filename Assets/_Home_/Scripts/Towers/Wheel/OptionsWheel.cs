@@ -32,14 +32,6 @@ public class OptionsWheel : MonoBehaviour
     private float angleWidthTotalPerSector, angleCenterPerSector;
     private Tower tower;
 
-    private void Start()
-    {
-        if (numberOfSectors > 1)
-        {
-            RenderSectors();
-        }
-    }
-
     public void ClearActions()
     {
         foreach (GameObject actionGO in actionGameObjects)
@@ -65,6 +57,7 @@ public class OptionsWheel : MonoBehaviour
 
     public void RenderSectors()
     {
+        if (numberOfSectors <= 0) return;
         if (numberOfSectors == 1)
         {
             GameObject actionGO = actionGameObjects[0];
@@ -92,7 +85,12 @@ public class OptionsWheel : MonoBehaviour
                 // Angle calculation for z axis
                 (angleCenterPerSector * i) - angleCenterPerSector / 2 - angleOffset / 2);
             Debug.Log(actionGO.GetComponent<OptionsWheelAction>());
-            actionGO.GetComponentInChildren<Button>().onClick.AddListener(
+            Button button = actionGO.GetComponentInChildren<Button>();
+            button.onClick.RemoveListener(
+                () => actionGO.GetComponentInChildren<OptionsWheelAction>()
+                              .Execute(towerSpot)
+            );
+            button.onClick.AddListener(
                 () => actionGO.GetComponentInChildren<OptionsWheelAction>()
                               .Execute(towerSpot)
 

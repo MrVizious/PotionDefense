@@ -88,18 +88,31 @@ public class TowerSpot : MonoBehaviour
             state = TowerSpotState.Selecting;
             return;
         }
-        promptSign.SetActive(false);
-        wheel.gameObject.SetActive(true);
-        player.ChangeToState(player.GetOrAddComponent<UIState>());
+
+        // If there is a tower
         if (tower != null)
         {
+            promptSign.SetActive(false);
+            wheel.gameObject.SetActive(true);
+            player.ChangeToState(player.GetOrAddComponent<UIState>());
             wheel.ClearActions();
             if (tower.CanEvolve())
             {
                 wheel.AddAction(typeof(EvolveWheelAction));
             }
-            Debug.Log("Add sell action");
             wheel.AddAction(typeof(SellWheelAction));
+        }
+        // TODO: If there is NO tower
+        else if (tower == null)
+        {
+            Debug.Log("No tower to do something with");
+            //promptSign.SetActive(false);
+            //wheel.gameObject.SetActive(true);
+            //player.ChangeToState(player.GetOrAddComponent<UIState>());
+            //wheel.ClearActions();
+
+            // TODO: Add actions of available towers
+            //wheel.AddAction(typeof(SellWheelAction));
         }
         wheel.RenderSectors();
     }

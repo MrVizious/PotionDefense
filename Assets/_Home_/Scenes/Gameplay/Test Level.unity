@@ -199,8 +199,8 @@ MonoBehaviour:
     m_ActionName: Gameplay/Look[/Mouse/position]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1747770515}
-        m_TargetAssemblyTypeName: PlayerLook, Assembly-CSharp
+      - m_Target: {fileID: 1747770516}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
         m_MethodName: Shoot
         m_Mode: 0
         m_Arguments:

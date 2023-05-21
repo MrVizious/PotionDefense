@@ -23,7 +23,7 @@ public class MovingState : PlayerState
         playerController.SubstituteStateWith(dashingState);
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (playerController.lastMovementInput.sqrMagnitude < 0.1f)
         {
@@ -32,7 +32,7 @@ public class MovingState : PlayerState
         }
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         //rb.MovePosition((Vector2)rb.position + playerController.lastMovementInput * playerData.speed * Time.deltaTime);
         //Debug.Log(playerController.lastMovementInput);

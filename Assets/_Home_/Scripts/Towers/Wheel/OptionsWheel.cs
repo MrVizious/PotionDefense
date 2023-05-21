@@ -11,6 +11,19 @@ public class OptionsWheel : MonoBehaviour
     public float angleOffset = 5f;
     public List<GameObject> actionGameObjects;
 
+    private TowerSpot _towerSpot;
+    private TowerSpot towerSpot
+    {
+        get
+        {
+            if (_towerSpot == null)
+            {
+                _towerSpot = transform.parent.GetComponentInChildren<TowerSpot>();
+            }
+            return _towerSpot;
+        }
+    }
+
 
     private int numberOfSectors
     {
@@ -66,7 +79,8 @@ public class OptionsWheel : MonoBehaviour
             Debug.Log(actionGO.GetComponent<OptionsWheelAction>());
             actionGO.GetComponentInChildren<Button>().onClick.AddListener(
                 () => actionGO.GetComponentInChildren<OptionsWheelAction>()
-                              .Execute(transform.parent.GetComponentInChildren<TowerSpot>())
+                              .Execute(towerSpot)
+
             );
             i++;
         }

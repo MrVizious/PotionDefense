@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TypeReferences;
 using UnityEngine.InputSystem;
+using ExtensionMethods;
 
 public class TowerSpot : MonoBehaviour
 {
@@ -76,11 +77,22 @@ public class TowerSpot : MonoBehaviour
             return;
         }
         promptSign.SetActive(true);
+        player.ChangeToPreviousState();
         wheel.gameObject.SetActive(false);
     }
 
     public void ChangeToSelecting()
     {
+        if (tower != null)
+        {
+            wheel.ClearActions();
+            if (tower.CanEvolve())
+            {
+                wheel.AddAction(typeof(EvolveWheelAction));
+            }
+            wheel.AddAction(typeof(SellWheelAction));
+        }
+        else { return; }
         if (state != TowerSpotState.Selecting)
         {
             state = TowerSpotState.Selecting;
@@ -88,15 +100,7 @@ public class TowerSpot : MonoBehaviour
         }
         promptSign.SetActive(false);
         wheel.gameObject.SetActive(true);
-        wheel.ClearActions();
-        if (tower != null)
-        {
-            if (tower.CanEvolve())
-            {
-                wheel.AddAction(typeof(EvolveWheelAction));
-            }
-            wheel.AddAction(typeof(SellWheelAction));
-        }
+        player.ChangeToState(player.GetOrAddComponent<UIState>());
     }
 
     public void Select(InputAction.CallbackContext c)
@@ -106,6 +110,10 @@ public class TowerSpot : MonoBehaviour
             if (state == TowerSpotState.Prompt)
             {
                 ChangeToSelecting();
+            }
+            else if (state == TowerSpotState.Selecting)
+            {
+                ChangeToPrompt();
             }
         }
     }

@@ -105,11 +105,11 @@ public class PlayerLook : MonoBehaviour
         lastJoystickInput = input;
     }
 
-    protected virtual void Shoot(InputAction.CallbackContext c)
+    public virtual void Shoot()
     {
-        if (c.started)
-            shooter.Shoot(transform.position,
-                          Quaternion.LookRotation(transform.forward, lookDirection),
-                          LayerMask.NameToLayer("PlayerProjectiles"));
+        shooter.Shoot(transform.position,
+                      Quaternion.LookRotation(transform.forward, lookDirection),
+                      LayerMask.NameToLayer("PlayerProjectiles"));
     }
+
 }

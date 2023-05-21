@@ -90,6 +90,11 @@ public class PlayerController : StateMachine<PlayerState>, IDamageable
         if (c.started)
             currentState.Dash();
     }
+    public void Shoot(InputAction.CallbackContext c)
+    {
+        if (c.started)
+            currentState.Shoot(c);
+    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {

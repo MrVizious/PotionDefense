@@ -83,16 +83,6 @@ public class TowerSpot : MonoBehaviour
 
     public void ChangeToSelecting()
     {
-        if (tower != null)
-        {
-            wheel.ClearActions();
-            if (tower.CanEvolve())
-            {
-                wheel.AddAction(typeof(EvolveWheelAction));
-            }
-            wheel.AddAction(typeof(SellWheelAction));
-        }
-        else { return; }
         if (state != TowerSpotState.Selecting)
         {
             state = TowerSpotState.Selecting;
@@ -101,6 +91,17 @@ public class TowerSpot : MonoBehaviour
         promptSign.SetActive(false);
         wheel.gameObject.SetActive(true);
         player.ChangeToState(player.GetOrAddComponent<UIState>());
+        if (tower != null)
+        {
+            wheel.ClearActions();
+            if (tower.CanEvolve())
+            {
+                wheel.AddAction(typeof(EvolveWheelAction));
+            }
+            Debug.Log("Add sell action");
+            wheel.AddAction(typeof(SellWheelAction));
+        }
+        wheel.RenderSectors();
     }
 
     public void Select(InputAction.CallbackContext c)

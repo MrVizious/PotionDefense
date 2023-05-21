@@ -54,7 +54,6 @@ public class OptionsWheel : MonoBehaviour
         GameObject newGO = Instantiate(sectorPrefab, transform);
         newGO.GetOrAddComponent(actionTypeToAdd);
         actionGameObjects.Add(newGO);
-        RenderSectors();
     }
     private void CalculateAngles()
     {
@@ -64,12 +63,28 @@ public class OptionsWheel : MonoBehaviour
     }
 
 
-    private void RenderSectors()
+    public void RenderSectors()
     {
-        CalculateAngles();
-        int i = 0;
-        foreach (GameObject actionGO in actionGameObjects)
+        if (numberOfSectors == 1)
         {
+            GameObject actionGO = actionGameObjects[0];
+            actionGO.name = "Sector_0";
+            Image image = actionGO.GetComponentInChildren<Image>();
+            image.fillAmount = 1f;
+            actionGO.transform.rotation = Quaternion.identity;
+            actionGO.GetComponentInChildren<Button>().onClick.AddListener(
+                () => actionGO.GetComponentInChildren<OptionsWheelAction>()
+                              .Execute(towerSpot)
+
+            );
+            return;
+        }
+
+
+        CalculateAngles();
+        for (int i = 0; i < actionGameObjects.Count; i++)
+        {
+            GameObject actionGO = actionGameObjects[i];
             actionGO.name = "Sector_" + i;
             Image image = actionGO.GetComponentInChildren<Image>();
             image.fillAmount = angleWidthTotalPerSector / 360f;
@@ -82,7 +97,6 @@ public class OptionsWheel : MonoBehaviour
                               .Execute(towerSpot)
 
             );
-            i++;
         }
     }
 }

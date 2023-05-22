@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf38cc38870b5e74a8dc1af71a3b3a13, type: 3}
-  m_Name: Vanishing Tower lvl 3 Data
+  m_Name: Ice Tower lvl 1 Data
   m_EditorClassIdentifier: 
   projectileModifierType:
     GuidAssignmentFailed: 0
     GUID: be1c1ff9b8c76074f892e0fa8d1a8617
     _typeNameAndAssembly: SlowModifier, Assembly-CSharp
     _suppressLogs: 0
-  maxHealth: 30
-  range: 4
-  nextLevel: {fileID: 11400000, guid: 19c236baf18d8264fa4a0f8f42fa15e3, type: 2}
+  maxHealth: 10
+  range: 2
+  nextLevel: {fileID: 11400000, guid: 277c5f82f22760945ab04ebc065052ae, type: 2}

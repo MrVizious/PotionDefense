@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
-public class SlowEffect : Effect
+public class IceEffect : Effect
 {
     public float speedModifier = 0.75f;
     [Button]

@@ -84,7 +84,6 @@ public class OptionsWheel : MonoBehaviour
             actionGO.transform.rotation = Quaternion.Euler(0f, 0f,
                 // Angle calculation for z axis
                 (angleCenterPerSector * i) - angleCenterPerSector / 2 - angleOffset / 2);
-            Debug.Log(actionGO.GetComponent<OptionsWheelAction>());
             Button button = actionGO.GetComponentInChildren<Button>();
             button.onClick.RemoveListener(
                 () => actionGO.GetComponentInChildren<OptionsWheelAction>()

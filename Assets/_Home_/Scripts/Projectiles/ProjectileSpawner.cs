@@ -7,7 +7,7 @@ using Sirenix.OdinInspector;
 public class ProjectileSpawner : MonoBehaviour
 {
     public bool targetPlayer = false;
-    public Projectile prefab;
+    public SimpleProjectile prefab;
     protected ProjectilePool _projectilePool;
     protected ProjectilePool projectilePool
     {
@@ -40,7 +40,7 @@ public class ProjectileSpawner : MonoBehaviour
     public virtual void Shoot(Vector3 position, Quaternion direction, int layer, Transform target = null)
     {
         if (target == null) target = projectilePool.playerTransform;
-        Projectile newProjectile = projectilePool.Get();
+        SimpleProjectile newProjectile = projectilePool.Get();
         newProjectile.Shoot(position, direction, layer, target);
     }
 

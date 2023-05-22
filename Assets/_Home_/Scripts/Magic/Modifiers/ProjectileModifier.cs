@@ -4,12 +4,16 @@ using UnityEngine;
 
 public abstract class ProjectileModifier : MonoBehaviour
 {
-    protected SimpleProjectile projectile;
+    protected Projectile projectile;
     protected void OnEnable()
     {
-        projectile = GetComponent<SimpleProjectile>();
+        projectile = GetComponent<Projectile>();
     }
 
+    protected virtual void Start()
+    {
+        OnAcquire();
+    }
     public virtual void OnAcquire() { }
     public virtual void OnHit(Enemy enemy)
     {

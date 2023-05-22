@@ -31,6 +31,7 @@ public class FollowingProjectile : Projectile
 
     public override void Shoot(Vector3 position, Quaternion rotation, int layer, Transform target = null)
     {
+        base.Shoot(position, rotation, layer, target);
         if (target == null) Release();
         transform.position = position;
         transform.rotation = rotation;

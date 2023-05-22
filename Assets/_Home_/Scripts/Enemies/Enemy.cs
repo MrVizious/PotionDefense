@@ -19,9 +19,6 @@ public class Enemy : Poolable, IDamageable
     public EnemyData enemyData;
     public PathCreator path;
     public float speedModifier = 1f;
-
-    // Properties
-    private float _currentHealth;
     [ShowInInspector]
     public float currentHealth
     {
@@ -37,6 +34,17 @@ public class Enemy : Poolable, IDamageable
             {
                 onDie?.Invoke();
             }
+        }
+    }
+
+    private float _currentHealth;
+    private SpriteRenderer _spriteRenderer;
+    private SpriteRenderer spriteRenderer
+    {
+        get
+        {
+            if (_spriteRenderer == null) { _spriteRenderer = GetComponentInChildren<SpriteRenderer>(); }
+            return _spriteRenderer;
         }
     }
 
@@ -68,6 +76,7 @@ public class Enemy : Poolable, IDamageable
     public void Damage(float hurtAmount)
     {
         currentHealth -= hurtAmount;
+        StartCoroutine(BlinkRed());
     }
     public void Heal(float hurtAmount)
     {
@@ -100,6 +109,17 @@ public class Enemy : Poolable, IDamageable
         distanceTravelled += enemyData.speed * speedModifier * Time.deltaTime;
         transform.position = path.path.GetPointAtDistance(distanceTravelled);
         transform.rotation = path.path.GetRotationAtDistance(distanceTravelled);
+    }
+
+    private IEnumerator BlinkRed()
+    {
+        spriteRenderer.color = Color.red * 0.75f;
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.color = Color.white;
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.color = Color.red * 0.75f;
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.color = Color.white;
     }
 
 

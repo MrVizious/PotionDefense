@@ -5,8 +5,8 @@ using DesignPatterns;
 
 public class ProjectilePool : MonoBehaviour
 {
-    public Projectile projectilePrefab;
-    public Pool<Projectile> projectilePool
+    public SimpleProjectile projectilePrefab;
+    public Pool<SimpleProjectile> projectilePool
     {
         get;
         protected set;
@@ -25,7 +25,7 @@ public class ProjectilePool : MonoBehaviour
         CreatePool();
     }
 
-    public Pool<Projectile> CreatePool(Projectile newProjectilePrefab = null)
+    public Pool<SimpleProjectile> CreatePool(SimpleProjectile newProjectilePrefab = null)
     {
         if (projectilePool != null)
         {
@@ -34,14 +34,14 @@ public class ProjectilePool : MonoBehaviour
         }
         if (newProjectilePrefab != null) projectilePrefab = newProjectilePrefab;
         if (projectilePrefab == null) return null;
-        projectilePool = new Pool<Projectile>(
+        projectilePool = new Pool<SimpleProjectile>(
             3, 50, prefab: projectilePrefab
         );
         return projectilePool;
     }
-    public Projectile Get()
+    public SimpleProjectile Get()
     {
-        Projectile projectile = projectilePool.Get();
+        SimpleProjectile projectile = projectilePool.Get();
         projectile.transform.SetParent(transform);
         return projectile;
     }

@@ -33,6 +33,7 @@ public class Enemy : Poolable, IDamageable
             if (_currentHealth <= 0f)
             {
                 onDie?.Invoke();
+                onDie.Clear();
             }
         }
     }
@@ -66,17 +67,15 @@ public class Enemy : Poolable, IDamageable
 
     private void Start()
     {
-        _currentHealth = enemyData.maxHealth;
         GetComponentInChildren<ShooterController>().enemyData = enemyData;
         if (onDie == null) onDie = new UltEvent();
-        onDie += Release;
     }
 
     [Button]
     public void Damage(float hurtAmount)
     {
         currentHealth -= hurtAmount;
-        StartCoroutine(BlinkRed());
+        StartCoroutine(DamagedVisualIndicator());
     }
     public void Heal(float hurtAmount)
     {
@@ -87,11 +86,13 @@ public class Enemy : Poolable, IDamageable
     {
         base.OnPoolGet();
         currentHealth = enemyData.maxHealth;
+        onDie += Release;
         gameObject.SetActive(true);
         moving = true;
     }
     public override void OnPoolRelease()
     {
+        spriteRenderer.color = Color.white;
         gameObject.SetActive(false);
     }
 
@@ -111,17 +112,16 @@ public class Enemy : Poolable, IDamageable
         transform.rotation = path.path.GetRotationAtDistance(distanceTravelled);
     }
 
-    private IEnumerator BlinkRed()
+    public IEnumerator DamagedVisualIndicator()
     {
+        float blinkSpeed = 0.05f;
         spriteRenderer.color = Color.red * 0.75f;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(blinkSpeed);
         spriteRenderer.color = Color.white;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(blinkSpeed);
         spriteRenderer.color = Color.red * 0.75f;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(blinkSpeed);
         spriteRenderer.color = Color.white;
     }
-
-
 
 }

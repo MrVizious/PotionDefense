@@ -52,10 +52,13 @@ public class SimpleProjectile : Projectile
         damageable.Damage(projectileData.damage * damageModifier);
 
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
-        if (enemy == null) return;
-        foreach (ProjectileModifier modifier in GetComponents<ProjectileModifier>())
+        if (enemy != null)
         {
-            modifier.OnHit(enemy);
+            foreach (ProjectileModifier modifier in GetComponents<ProjectileModifier>())
+            {
+                modifier.OnHit(enemy);
+            }
+
         }
         Release();
     }

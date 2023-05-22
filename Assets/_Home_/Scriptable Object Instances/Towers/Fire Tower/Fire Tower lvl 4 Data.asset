@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileModifierType:
     GuidAssignmentFailed: 0
-    GUID: be1c1ff9b8c76074f892e0fa8d1a8617
-    _typeNameAndAssembly: SlowModifier, Assembly-CSharp
+    GUID: d2b39cdc6d445ec4395a814599f77d18
+    _typeNameAndAssembly: FireModifier, Assembly-CSharp
     _suppressLogs: 0
   maxHealth: 40
   range: 5

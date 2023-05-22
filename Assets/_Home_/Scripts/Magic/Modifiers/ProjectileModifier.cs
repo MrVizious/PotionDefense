@@ -20,4 +20,11 @@ public abstract class ProjectileModifier : MonoBehaviour
         if (enemy == null) return;
         if (!enemy.gameObject.activeInHierarchy) return;
     }
+
+    public virtual void End() { }
+
+    protected virtual void OnDestroy()
+    {
+        End();
+    }
 }

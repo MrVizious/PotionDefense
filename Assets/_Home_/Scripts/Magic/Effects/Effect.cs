@@ -17,6 +17,7 @@ public abstract class Effect : MonoBehaviour
     {
         if (enemy == null) return;
         if (!enemy.isActiveAndEnabled) return;
+        enemy.onDie += End;
         if (durationInSeconds > 0f)
         {
             endEffectCoroutine = StartCoroutine(EndEffectCountdown(durationInSeconds));
@@ -27,6 +28,8 @@ public abstract class Effect : MonoBehaviour
     {
         if (endEffectCoroutine != null) StopCoroutine(endEffectCoroutine);
         endEffectCoroutine = null;
+        StopAllCoroutines();
+        enemy.onDie -= End;
 
         Destroy(this);
     }
@@ -34,6 +37,11 @@ public abstract class Effect : MonoBehaviour
     protected IEnumerator EndEffectCountdown(float secondsToEndEffect)
     {
         yield return new WaitForSeconds(secondsToEndEffect);
+        End();
+    }
+
+    protected void OnDestroy()
+    {
         End();
     }
 

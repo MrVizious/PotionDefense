@@ -46,6 +46,16 @@ public class PlayerController : StateMachine<PlayerState>, IDamageable
 
     [HideInInspector] public HashSet<Collider2D> touchingColliders;
 
+    private SpriteRenderer _spriteRenderer;
+    private SpriteRenderer spriteRenderer
+    {
+        get
+        {
+            if (_spriteRenderer == null) { _spriteRenderer = GetComponentInChildren<SpriteRenderer>(); }
+            return _spriteRenderer;
+        }
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -108,10 +118,23 @@ public class PlayerController : StateMachine<PlayerState>, IDamageable
     public void Damage(float amount)
     {
         currentHealth -= amount;
+        StartCoroutine(DamagedVisualIndicator());
     }
 
     public void Heal(float amount)
     {
         currentHealth += amount;
+    }
+
+    public IEnumerator DamagedVisualIndicator()
+    {
+        float blinkSpeed = 0.05f;
+        spriteRenderer.color = Color.red * 0.75f;
+        yield return new WaitForSeconds(blinkSpeed);
+        spriteRenderer.color = Color.white;
+        yield return new WaitForSeconds(blinkSpeed);
+        spriteRenderer.color = Color.red * 0.75f;
+        yield return new WaitForSeconds(blinkSpeed);
+        spriteRenderer.color = Color.white;
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using ExtensionMethods;
 using Sirenix.OdinInspector;
 using System.Linq;
+using TypeReferences;
 
 public class Tower : MonoBehaviour
 {
@@ -42,10 +43,46 @@ public class Tower : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        SimpleProjectile projectile = other.GetComponent<SimpleProjectile>();
+        Projectile projectile = other.GetComponent<Projectile>();
         if (projectile == null) return;
         if (data.projectileModifierType == null) return;
-        projectile.GetOrAddComponent(data.projectileModifierType);
+
+        // If the current modifier type is already in the projectile, substitute it
+        ProjectileModifier currentModifier = (ProjectileModifier)projectile.GetComponent(data.projectileModifierType);
+        if (currentModifier != null)
+        {
+            Destroy(currentModifier);
+            projectile.AddComponent(data.projectileModifierType);
+            return;
+        }
+
+        // Ice neutralizes fire
+        if (data.projectileModifierType.Type == typeof(IceModifier))
+        {
+            FireModifier fireModifier = projectile.GetComponent<FireModifier>();
+            if (fireModifier != null)
+            {
+                Destroy(fireModifier);
+                return;
+            }
+        }
+
+        // Fire neutralizes ice
+        if (data.projectileModifierType.Type == typeof(FireModifier))
+        {
+            IceModifier iceModifier = projectile.GetComponent<IceModifier>();
+            if (iceModifier != null)
+            {
+                Destroy(iceModifier);
+                return;
+            }
+        }
+
+        if (projectile.gameObject.layer.Equals(LayerMask.NameToLayer("PlayerProjectiles")))
+        {
+            projectile.AddComponent(data.projectileModifierType);
+        }
+
     }
 }
 

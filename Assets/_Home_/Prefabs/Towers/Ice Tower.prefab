@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 8028890318824035481}
   - component: {fileID: 8028890318824035484}
   m_Layer: 0
-  m_Name: Vanishing Tower
+  m_Name: Ice Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

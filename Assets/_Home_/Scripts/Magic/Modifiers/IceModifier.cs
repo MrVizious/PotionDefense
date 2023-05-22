@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class IceModifier : ProjectileModifier
 {
+
     public override void OnAcquire()
     {
         base.OnAcquire();
@@ -20,5 +21,11 @@ public class IceModifier : ProjectileModifier
         slowEffect.speedModifier = 0.2f;
         slowEffect.durationInSeconds = 7f;
         slowEffect.Begin();
+    }
+
+    public override void End()
+    {
+        projectile.speedModifier = 1f;
+        base.End();
     }
 }

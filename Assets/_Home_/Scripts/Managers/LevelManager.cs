@@ -6,6 +6,21 @@ using ExtensionMethods;
 
 public class LevelManager : StateMachine<LevelState>
 {
+    [SerializeField]
+    private float _currentFortressHealth = 50f;
+    public float currentFortressHealth
+    {
+        get => _currentFortressHealth;
+        set
+        {
+            value = Mathf.Max(0, value);
+            _currentFortressHealth = value;
+            if (_currentFortressHealth <= 0)
+            {
+                FortressDied();
+            }
+        }
+    }
     public int currentWaveIndex = 0;
     private PlayerController player;
 
@@ -22,5 +37,12 @@ public class LevelManager : StateMachine<LevelState>
     public void PlayerDied()
     {
         Debug.Log("Player just died!");
+        SceneManagerSingleton.Instance.GoToLoseMenu();
+    }
+
+    public void FortressDied()
+    {
+        Debug.Log("Fortress died!");
+        SceneManagerSingleton.Instance.GoToLoseMenu();
     }
 }

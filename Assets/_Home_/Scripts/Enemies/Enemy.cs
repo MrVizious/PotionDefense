@@ -101,7 +101,12 @@ public class Enemy : Poolable, IDamageable
         if (moving)
         {
             Move();
-            if (path.path.HasReachedEndAtDistance(distanceTravelled)) Release();
+            if (path.path.HasReachedEndAtDistance(distanceTravelled))
+            {
+                onEndOfPath.Invoke();
+                DamageFortress(enemyData.damageToFortress);
+                Release();
+            }
         }
     }
 
@@ -110,6 +115,11 @@ public class Enemy : Poolable, IDamageable
         distanceTravelled += enemyData.speed * speedModifier * Time.deltaTime;
         transform.position = path.path.GetPointAtDistance(distanceTravelled);
         transform.rotation = path.path.GetRotationAtDistance(distanceTravelled);
+    }
+
+    private void DamageFortress(float damageAmount)
+    {
+        FindObjectOfType<LevelManager>().currentFortressHealth -= damageAmount;
     }
 
     public IEnumerator DamagedVisualIndicator()

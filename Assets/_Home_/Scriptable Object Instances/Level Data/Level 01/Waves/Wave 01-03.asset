@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3b3ba636170db49a14489e2bd9dc77, type: 3}
+  m_Name: Wave 01-03
+  m_EditorClassIdentifier: 
+  waveActions:
+  - rid: 3955038300279668736
+  - rid: 3955038436376707073
+  - rid: 3955038436376707075
+  - rid: 3955038436376707076
+  - rid: 3955038436376707077
+  references:
+    version: 2
+    RefIds:
+    - rid: 3955038300279668736
+      type: {class: WaveActionRepeatedSpawn, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        enemyPrefab: {fileID: 3036011059039509174, guid: be4c0ffcf16d56441bfc515755a89551, type: 3}
+        secondsBetweenSpawns: 2
+        enemiesToSpawn: 3
+    - rid: 3955038436376707073
+      type: {class: WaveActionWait, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        secondsToWait: 2
+    - rid: 3955038436376707075
+      type: {class: WaveActionRepeatedSpawn, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        enemyPrefab: {fileID: 9190615768393605909, guid: c4aa872081c4e114cb98daeab74b267b, type: 3}
+        secondsBetweenSpawns: 3
+        enemiesToSpawn: 2
+    - rid: 3955038436376707076
+      type: {class: WaveActionWait, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        secondsToWait: 2
+    - rid: 3955038436376707077
+      type: {class: WaveActionSpawn, ns: , asm: Assembly-CSharp}
+      data:
+        onEnd:
+          _PersistentCalls: []
+        enemyPrefab: {fileID: 3036011059039509174, guid: eb9ca8684a2c04b469c4b3073c0f0bb2, type: 3}

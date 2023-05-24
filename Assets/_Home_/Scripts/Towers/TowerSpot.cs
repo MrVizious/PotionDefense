@@ -4,6 +4,8 @@ using UnityEngine;
 using TypeReferences;
 using UnityEngine.InputSystem;
 using ExtensionMethods;
+using Sirenix.OdinInspector;
+using UtilityMethods;
 
 public class TowerSpot : MonoBehaviour
 {
@@ -144,5 +146,12 @@ public class TowerSpot : MonoBehaviour
         PlayerController exitingPlayer = other.GetComponent<PlayerController>();
         if (player != exitingPlayer) return;
         ChangeToHidden();
+    }
+
+    // TODO: Remove
+    [Button]
+    public void CalculateCartesianFromRadiusAndAngle(float radius, float angle)
+    {
+        Debug.Log(Math.PolarToCartesianCounterclockwise(radius, angle));
     }
 }

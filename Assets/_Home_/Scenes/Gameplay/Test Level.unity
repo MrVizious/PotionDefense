@@ -1072,6 +1072,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1276810928}
   - component: {fileID: 1276810927}
+  - component: {fileID: 1276810929}
   m_Layer: 0
   m_Name: Scene Manager Singleton
   m_TagString: Untagged
@@ -1115,6 +1116,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1276810929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1276810926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 003c25630808c7243847bd9149749434, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _AwakeEvent:
+    _PersistentCalls: []
+  _StartEvent:
+    _PersistentCalls: []
+  _EnableEvent:
+    _PersistentCalls: []
+  _DisableEvent:
+    _PersistentCalls: []
+  _DestroyEvent:
+    _PersistentCalls: []
 --- !u!1 &1349246644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,11 +1239,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7093269655351582150, guid: 58ac7bb6e5c014e4eb635436390a2955, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.75
+      value: 4.16
       objectReference: {fileID: 0}
     - target: {fileID: 7093269655351582150, guid: 58ac7bb6e5c014e4eb635436390a2955, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.33
+      value: 3.86
       objectReference: {fileID: 0}
     - target: {fileID: 7093269655351582150, guid: 58ac7bb6e5c014e4eb635436390a2955, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1350,6 +1373,10 @@ PrefabInstance:
     - target: {fileID: 8028890318824035480, guid: 4e74ca1b77e2b2549a09a16e6e8f4f7c, type: 3}
       propertyPath: m_Name
       value: Ice Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 8028890318824035482, guid: 4e74ca1b77e2b2549a09a16e6e8f4f7c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8028890318824035483, guid: 4e74ca1b77e2b2549a09a16e6e8f4f7c, type: 3}
       propertyPath: m_RootOrder
@@ -1590,11 +1617,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7093269655351582150, guid: 58ac7bb6e5c014e4eb635436390a2955, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4
+      value: -3.83
       objectReference: {fileID: 0}
     - target: {fileID: 7093269655351582150, guid: 58ac7bb6e5c014e4eb635436390a2955, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.24
+      value: 1.11
       objectReference: {fileID: 0}
     - target: {fileID: 7093269655351582150, guid: 58ac7bb6e5c014e4eb635436390a2955, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1974,6 +2001,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1149228876}
     m_Modifications:
+    - target: {fileID: 7505745340093035040, guid: bcb974e232e801b45a4d8616242cfde8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7505745340093035043, guid: bcb974e232e801b45a4d8616242cfde8, type: 3}
       propertyPath: m_RootOrder
       value: 2

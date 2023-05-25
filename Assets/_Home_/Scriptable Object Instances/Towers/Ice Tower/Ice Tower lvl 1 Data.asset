@@ -19,4 +19,5 @@ MonoBehaviour:
     _suppressLogs: 0
   maxHealth: 10
   range: 2
+  cost: 5
   nextLevel: {fileID: 11400000, guid: 277c5f82f22760945ab04ebc065052ae, type: 2}

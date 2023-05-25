@@ -10,6 +10,7 @@ public class TowerData : ScriptableObject
     public TypeReference projectileModifierType;
     public float maxHealth;
     public float range;
+    public float cost;
     public TowerData nextLevel;
 
 }

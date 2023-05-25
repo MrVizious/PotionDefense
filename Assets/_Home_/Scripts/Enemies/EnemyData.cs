@@ -9,5 +9,6 @@ public class EnemyData : ScriptableObject
     public float speed = 1f;
     public float secondsBetweenShots = 1f;
     public float damageToFortress = 1f;
+    public float experienceGained = 5f;
 
 }

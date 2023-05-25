@@ -44,7 +44,30 @@ public class OptionsWheel : MonoBehaviour
     public void AddAction(TypeReference actionTypeToAdd)
     {
         GameObject newGO = Instantiate(sectorPrefab, transform);
-        newGO.GetOrAddComponent(actionTypeToAdd);
+        Component actionAdded = newGO.GetOrAddComponent(actionTypeToAdd);
+        if (actionTypeToAdd.Type == typeof(EvolveWheelAction))
+        {
+            if (!towerSpot.tower.CanEvolve())
+            {
+                newGO.GetComponent<Button>().interactable = false;
+            }
+        }
+        else if (actionTypeToAdd.Type == typeof(BuyFireTowerWheelAction))
+        {
+            float cost = ((BuyFireTowerWheelAction)actionAdded).towerPrefab.GetComponentInChildren<Tower>().data.cost;
+            if (cost > FindObjectOfType<LevelManager>().experience)
+            {
+                newGO.GetComponentInChildren<Button>().interactable = false;
+            }
+        }
+        else if (actionTypeToAdd.Type == typeof(BuyIceTowerWheelAction))
+        {
+            float cost = ((BuyIceTowerWheelAction)actionAdded).towerPrefab.GetComponentInChildren<Tower>().data.cost;
+            if (cost > FindObjectOfType<LevelManager>().experience)
+            {
+                newGO.GetComponentInChildren<Button>().interactable = false;
+            }
+        }
         actionGameObjects.Add(newGO);
     }
     private void CalculateAngles()

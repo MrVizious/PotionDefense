@@ -32,8 +32,7 @@ public class Enemy : Poolable, IDamageable
             _currentHealth = value;
             if (_currentHealth <= 0f)
             {
-                onDie?.Invoke();
-                onDie.Clear();
+                Die();
             }
         }
     }
@@ -61,6 +60,14 @@ public class Enemy : Poolable, IDamageable
         }
     }
 
+    private void Die()
+    {
+        Release();
+        FindObjectOfType<LevelManager>().experience += enemyData.experienceGained;
+        onDie?.Invoke();
+        onDie.Clear();
+    }
+
 
     // Private variables
     private float distanceTravelled = 0f;
@@ -86,13 +93,17 @@ public class Enemy : Poolable, IDamageable
     {
         base.OnPoolGet();
         currentHealth = enemyData.maxHealth;
-        onDie += Release;
         gameObject.SetActive(true);
         moving = true;
     }
     public override void OnPoolRelease()
     {
         spriteRenderer.color = Color.white;
+        Effect[] currentEffects = GetComponentsInChildren<Effect>();
+        foreach (Effect effect in currentEffects)
+        {
+            Destroy(effect);
+        }
         gameObject.SetActive(false);
     }
 

@@ -7,6 +7,7 @@ using ExtensionMethods;
 
 public abstract class OptionsWheelAction : MonoBehaviour
 {
+    protected float experienceNeeded;
     protected Image icon;
     protected Image sector;
     protected virtual string iconRoute

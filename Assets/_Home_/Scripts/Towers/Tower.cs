@@ -22,13 +22,27 @@ public class Tower : MonoBehaviour
     public void Evolve()
     {
         if (!CanEvolve()) return;
+        FindObjectOfType<LevelManager>().experience -= CostToEvolve();
         data = data.nextLevel;
         UpdateRadius();
     }
 
     public bool CanEvolve()
     {
-        return data.nextLevel != null;
+        float cost = CostToEvolve();
+        if (cost < 0) return false;
+        LevelManager levelManager = FindObjectOfType<LevelManager>();
+        if (cost <= levelManager.experience)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public float CostToEvolve()
+    {
+        if (data.nextLevel == null) return -1;
+        return data.nextLevel.cost;
     }
 
     private void UpdateRadius()

@@ -6,8 +6,8 @@ using ExtensionMethods;
 
 public class LevelManager : StateMachine<LevelState>
 {
-    [SerializeField]
-    private float _currentFortressHealth = 50f;
+
+    public float experience = 0f;
     public float currentFortressHealth
     {
         get => _currentFortressHealth;
@@ -23,6 +23,7 @@ public class LevelManager : StateMachine<LevelState>
     }
     public int currentWaveIndex = 0;
     private PlayerController player;
+    private float _currentFortressHealth = 50f;
 
     protected override void Awake()
     {
@@ -31,6 +32,7 @@ public class LevelManager : StateMachine<LevelState>
         player.onDie += PlayerDied;
 
         currentWaveIndex = 0;
+        experience = 100f;
         ChangeToState(this.GetOrAddComponent<BuyRoundState>());
     }
 

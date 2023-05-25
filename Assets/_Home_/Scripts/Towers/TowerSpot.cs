@@ -102,13 +102,9 @@ public class TowerSpot : MonoBehaviour
         // If there is a tower
         if (tower != null)
         {
-            if (tower.CanEvolve())
-            {
-                wheel.AddAction(typeof(EvolveWheelAction));
-            }
+            wheel.AddAction(typeof(EvolveWheelAction));
             wheel.AddAction(typeof(SellWheelAction));
         }
-        // TODO: If there is NO tower
         else if (tower == null)
         {
             wheel.AddAction(typeof(BuyIceTowerWheelAction));

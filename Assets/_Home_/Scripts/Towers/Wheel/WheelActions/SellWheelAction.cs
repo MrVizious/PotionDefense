@@ -13,6 +13,5 @@ public class SellWheelAction : OptionsWheelAction
         FindObjectOfType<LevelManager>().experience += spot.tower.data.cost / 2;
         Destroy(spot.tower.gameObject);
         spot.ChangeToPrompt();
-        // TODO: Receive money
     }
 }

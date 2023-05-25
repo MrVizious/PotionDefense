@@ -112,6 +112,7 @@ public class TowerSpot : MonoBehaviour
         else if (tower == null)
         {
             wheel.AddAction(typeof(BuyIceTowerWheelAction));
+            wheel.AddAction(typeof(BuyFireTowerWheelAction));
         }
         wheel.RenderSectors();
     }

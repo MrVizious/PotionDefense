@@ -12,6 +12,10 @@ public class TowerSpot : MonoBehaviour
     public GameObject promptSign;
     public Tower tower
     {
+        set
+        {
+            _tower = value;
+        }
         get
         {
             if (_tower == null) _tower = GetComponentInChildren<Tower>();
@@ -91,13 +95,13 @@ public class TowerSpot : MonoBehaviour
             return;
         }
 
+        promptSign.SetActive(false);
+        wheel.gameObject.SetActive(true);
+        player.ChangeToState(player.GetOrAddComponent<UIState>());
+        wheel.ClearActions();
         // If there is a tower
         if (tower != null)
         {
-            promptSign.SetActive(false);
-            wheel.gameObject.SetActive(true);
-            player.ChangeToState(player.GetOrAddComponent<UIState>());
-            wheel.ClearActions();
             if (tower.CanEvolve())
             {
                 wheel.AddAction(typeof(EvolveWheelAction));
@@ -107,14 +111,7 @@ public class TowerSpot : MonoBehaviour
         // TODO: If there is NO tower
         else if (tower == null)
         {
-            Debug.Log("No tower to do something with");
-            //promptSign.SetActive(false);
-            //wheel.gameObject.SetActive(true);
-            //player.ChangeToState(player.GetOrAddComponent<UIState>());
-            //wheel.ClearActions();
-
-            // TODO: Add actions of available towers
-            //wheel.AddAction(typeof(SellWheelAction));
+            wheel.AddAction(typeof(BuyIceTowerWheelAction));
         }
         wheel.RenderSectors();
     }
@@ -136,8 +133,9 @@ public class TowerSpot : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        player = other.GetComponent<PlayerController>();
-        if (player == null) return;
+        PlayerController newPlayer = other.GetComponent<PlayerController>();
+        if (newPlayer == null) return;
+        player = newPlayer;
         ChangeToPrompt();
     }
 
@@ -145,13 +143,8 @@ public class TowerSpot : MonoBehaviour
     {
         PlayerController exitingPlayer = other.GetComponent<PlayerController>();
         if (player != exitingPlayer) return;
+        player = null;
         ChangeToHidden();
     }
 
-    // TODO: Remove
-    [Button]
-    public void CalculateCartesianFromRadiusAndAngle(float radius, float angle)
-    {
-        Debug.Log(Math.PolarToCartesianCounterclockwise(radius, angle));
-    }
 }

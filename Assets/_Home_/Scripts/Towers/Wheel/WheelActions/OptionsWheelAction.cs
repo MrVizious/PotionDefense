@@ -24,13 +24,13 @@ public abstract class OptionsWheelAction : MonoBehaviour
         GameObject iconGO = new GameObject("Icon");
         icon = iconGO.AddComponent<NonRaycastableTransparencyImage>();
         icon.sprite = Resources.Load<Sprite>(iconRoute);
+        icon.raycastTarget = false;
         RectTransform rectTransform = iconGO.GetComponent<RectTransform>();
         iconGO.transform.SetParent(GetComponentInChildren<Canvas>().transform);
         rectTransform.sizeDelta = Vector2.one;
         rectTransform.localPosition = Math.PolarToCartesianClockwise(0.25f, sector.fillAmount * 360 / 2).WithZ(-0.1f);
         iconGO.transform.localScale = Vector3.one * 0.25f;
         iconGO.transform.rotation = Quaternion.identity;
-        //rectTransform.localPosition = Math.PolarToCartesianClockwise(0.25f, 0f).WithZ(-0.1f);
     }
     public abstract void Execute(TowerSpot spot);
 }

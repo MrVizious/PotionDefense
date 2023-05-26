@@ -8,8 +8,17 @@ using DesignPatterns;
 public class PlayerLook : MonoBehaviour
 {
     [SerializeField] private PlayerInput playerInput;
+
     [SerializeField]
-    private Transform target;
+    private Transform _target;
+    public Transform target
+    {
+        get => _target;
+        private set
+        {
+            _target = value;
+        }
+    }
     [SerializeField]
     [Range(0, 20)]
     private float maxRange = 7f;

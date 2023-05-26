@@ -17,7 +17,6 @@ public class IceEffect : Effect
     [Button]
     public override void End()
     {
-        Debug.Log("Ending ice effect");
         enemy.speedModifier = 1f;
         base.End();
     }

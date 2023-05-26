@@ -44,9 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa7d6da94d3f824dbbe0e143ba9d500, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sectorPrefab: {fileID: 7377226623196431232, guid: 2bdb968390874eb4db216777131eab6a, type: 3}
+  sectorPrefab: {fileID: 8974770393212972865, guid: 2bdb968390874eb4db216777131eab6a, type: 3}
   angleOffset: 5
-  actionGameObjects: []
+  sectors: []
 --- !u!1 &7093269654828246121
 GameObject:
   m_ObjectHideFlags: 0

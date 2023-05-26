@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using ExtensionMethods;
 using Sirenix.OdinInspector;
 using UtilityMethods;
+using UnityEngine.UI;
 
 public class TowerSpot : MonoBehaviour
 {
@@ -56,10 +57,21 @@ public class TowerSpot : MonoBehaviour
         }
     }
 
+    private PlayerInput _playerInput;
+    private PlayerInput playerInput
+    {
+        get
+        {
+            if (_playerInput == null) _playerInput = FindObjectOfType<PlayerInput>();
+            return _playerInput;
+        }
+    }
+
     private void Start()
     {
-        PlayerInput playerInput = FindObjectOfType<PlayerInput>();
-        playerInput.actions["Interact"].performed += Select;
+        playerInput.actions["Interact"].performed += InteractButtonPressed;
+        playerInput.actions["Look"].performed += ChooseActionWithJoystick;
+        playerInput.actions["Back"].performed += BackButtonPressed;
         wheel = GetComponentInChildren<OptionsWheel>();
         ChangeToHidden();
     }
@@ -77,6 +89,7 @@ public class TowerSpot : MonoBehaviour
 
     public void ChangeToPrompt()
     {
+        if (player == null) return;
         if (state != TowerSpotState.Prompt)
         {
             state = TowerSpotState.Prompt;
@@ -89,12 +102,12 @@ public class TowerSpot : MonoBehaviour
 
     public void ChangeToSelecting()
     {
+        if (player == null) return;
         if (state != TowerSpotState.Selecting)
         {
             state = TowerSpotState.Selecting;
             return;
         }
-
         promptSign.SetActive(false);
         wheel.gameObject.SetActive(true);
         player.ChangeToState(player.GetOrAddComponent<UIState>());
@@ -113,8 +126,9 @@ public class TowerSpot : MonoBehaviour
         wheel.RenderSectors();
     }
 
-    public void Select(InputAction.CallbackContext c)
+    public void InteractButtonPressed(InputAction.CallbackContext c)
     {
+        if (player == null) return;
         if (c.performed)
         {
             if (state == TowerSpotState.Prompt)
@@ -123,9 +137,55 @@ public class TowerSpot : MonoBehaviour
             }
             else if (state == TowerSpotState.Selecting)
             {
-                ChangeToPrompt();
+                if (playerInput.currentControlScheme.ToLower().Equals("keyboard and mouse"))
+                {
+                    ChangeToPrompt();
+                }
             }
         }
+    }
+
+    public void BackButtonPressed(InputAction.CallbackContext c)
+    {
+        if (player == null) return;
+        if (state == TowerSpotState.Prompt)
+        {
+            ChangeToHidden();
+        }
+        else if (state == TowerSpotState.Selecting)
+        {
+            ChangeToPrompt();
+        }
+    }
+
+    public void ChooseActionWithJoystick(InputAction.CallbackContext c)
+    {
+        if (player == null) return;
+        if (state != TowerSpotState.Selecting) { return; }
+
+        // Only use this if using a gamepad
+        if (!playerInput.currentControlScheme.ToLower().Equals("gamepad"))
+        {
+            return;
+        }
+
+        if (!c.performed) return;
+
+        Vector2 lookVector = c.ReadValue<Vector2>().normalized;
+
+        WheelSector pointedSector = wheel.sectors[0];
+        float closestToDirection = -1f;
+        for (int i = 0; i < wheel.sectors.Count; i++)
+        {
+            Vector2 iconPosition = wheel.sectors[i].icon.transform.position - transform.position;
+            float currentSimilarity = Vector2.Dot(lookVector, iconPosition);
+            if (currentSimilarity > closestToDirection)
+            {
+                closestToDirection = currentSimilarity;
+                pointedSector = wheel.sectors[i];
+            }
+        }
+        pointedSector.button.Select();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -143,5 +203,4 @@ public class TowerSpot : MonoBehaviour
         player = null;
         ChangeToHidden();
     }
-
 }

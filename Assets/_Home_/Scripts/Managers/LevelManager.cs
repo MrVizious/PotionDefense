@@ -32,7 +32,7 @@ public class LevelManager : StateMachine<LevelState>
         player.onDie += PlayerDied;
 
         currentWaveIndex = 0;
-        experience = 100f;
+        experience = 100000f;
         ChangeToState(this.GetOrAddComponent<BuyRoundState>());
     }
 

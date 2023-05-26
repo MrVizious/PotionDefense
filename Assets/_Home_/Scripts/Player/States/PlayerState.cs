@@ -22,7 +22,7 @@ public abstract class PlayerState : MonoBehaviour, State<PlayerState>
     public virtual void Dash() { }
     protected PlayerData playerData;
     protected PlayerLook _playerLook;
-    protected PlayerLook playerLook
+    public PlayerLook playerLook
     {
         get
         {

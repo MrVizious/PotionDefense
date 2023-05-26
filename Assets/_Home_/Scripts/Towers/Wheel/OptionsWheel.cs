@@ -7,9 +7,9 @@ using ExtensionMethods;
 
 public class OptionsWheel : MonoBehaviour
 {
-    public GameObject sectorPrefab;
+    public WheelSector sectorPrefab;
     public float angleOffset = 5f;
-    public List<GameObject> actionGameObjects;
+    public List<WheelSector> sectors;
 
     private TowerSpot _towerSpot;
     private TowerSpot towerSpot
@@ -27,29 +27,29 @@ public class OptionsWheel : MonoBehaviour
 
     private int numberOfSectors
     {
-        get => actionGameObjects.Count;
+        get => sectors.Count;
     }
     private float angleWidthTotalPerSector, angleCenterPerSector;
     private Tower tower;
 
     public void ClearActions()
     {
-        foreach (GameObject actionGO in actionGameObjects)
+        foreach (WheelSector sector in sectors)
         {
-            Destroy(actionGO);
+            Destroy(sector.gameObject);
         }
-        actionGameObjects.Clear();
+        sectors.Clear();
     }
 
     public void AddAction(TypeReference actionTypeToAdd)
     {
-        GameObject newGO = Instantiate(sectorPrefab, transform);
-        Component actionAdded = newGO.GetOrAddComponent(actionTypeToAdd);
+        WheelSector newSector = Instantiate(sectorPrefab, transform);
+        Component actionAdded = newSector.GetOrAddComponent(actionTypeToAdd);
         if (actionTypeToAdd.Type == typeof(EvolveWheelAction))
         {
             if (!towerSpot.tower.CanEvolve())
             {
-                newGO.GetComponent<Button>().interactable = false;
+                newSector.button.interactable = false;
             }
         }
         else if (actionTypeToAdd.Type == typeof(BuyFireTowerWheelAction))
@@ -57,7 +57,7 @@ public class OptionsWheel : MonoBehaviour
             float cost = ((BuyFireTowerWheelAction)actionAdded).towerPrefab.GetComponentInChildren<Tower>().data.cost;
             if (cost > FindObjectOfType<LevelManager>().experience)
             {
-                newGO.GetComponentInChildren<Button>().interactable = false;
+                newSector.button.interactable = false;
             }
         }
         else if (actionTypeToAdd.Type == typeof(BuyIceTowerWheelAction))
@@ -65,10 +65,10 @@ public class OptionsWheel : MonoBehaviour
             float cost = ((BuyIceTowerWheelAction)actionAdded).towerPrefab.GetComponentInChildren<Tower>().data.cost;
             if (cost > FindObjectOfType<LevelManager>().experience)
             {
-                newGO.GetComponentInChildren<Button>().interactable = false;
+                newSector.button.interactable = false;
             }
         }
-        actionGameObjects.Add(newGO);
+        sectors.Add(newSector);
     }
     private void CalculateAngles()
     {
@@ -77,45 +77,36 @@ public class OptionsWheel : MonoBehaviour
         angleWidthTotalPerSector = angleCenterPerSector - angleOffset;
     }
 
-
     public void RenderSectors()
     {
         if (numberOfSectors <= 0) return;
         if (numberOfSectors == 1)
         {
-            GameObject actionGO = actionGameObjects[0];
-            actionGO.name = "Sector_0";
-            Image image = actionGO.GetComponentInChildren<Image>();
-            image.fillAmount = 1f;
-            actionGO.transform.rotation = Quaternion.identity;
-            actionGO.GetComponentInChildren<Button>().onClick.AddListener(
-                () => actionGO.GetComponentInChildren<OptionsWheelAction>()
-                              .Execute(towerSpot)
-
+            WheelSector sector = sectors[0];
+            sector.gameObject.name = "Sector_0";
+            sector.sectorImage.fillAmount = 1f;
+            sector.transform.rotation = Quaternion.identity;
+            sector.button.onClick.AddListener(
+                () => sector.action.Execute(towerSpot)
             );
             return;
         }
 
-
         CalculateAngles();
-        for (int i = 0; i < actionGameObjects.Count; i++)
+
+        for (int i = 0; i < sectors.Count; i++)
         {
-            GameObject actionGO = actionGameObjects[i];
-            actionGO.name = "Sector_" + i;
-            Image image = actionGO.GetComponentInChildren<Image>();
-            image.fillAmount = angleWidthTotalPerSector / 360f;
-            actionGO.transform.rotation = Quaternion.Euler(0f, 0f,
+            WheelSector sector = sectors[i];
+            sector.gameObject.name = "Sector_" + i;
+            sector.sectorImage.fillAmount = angleWidthTotalPerSector / 360f;
+            sector.transform.rotation = Quaternion.Euler(0f, 0f,
                 // Angle calculation for z axis
                 (angleCenterPerSector * i) - angleCenterPerSector / 2 - angleOffset / 2);
-            Button button = actionGO.GetComponentInChildren<Button>();
-            button.onClick.RemoveListener(
-                () => actionGO.GetComponentInChildren<OptionsWheelAction>()
-                              .Execute(towerSpot)
+            sector.button.onClick.RemoveListener(
+                () => sector.action.Execute(towerSpot)
             );
-            button.onClick.AddListener(
-                () => actionGO.GetComponentInChildren<OptionsWheelAction>()
-                              .Execute(towerSpot)
-
+            sector.button.onClick.AddListener(
+                () => sector.action.Execute(towerSpot)
             );
         }
     }

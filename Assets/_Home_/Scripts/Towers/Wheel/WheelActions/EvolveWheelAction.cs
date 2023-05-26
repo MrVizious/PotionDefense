@@ -10,9 +10,9 @@ public class EvolveWheelAction : OptionsWheelAction
     }
     public override void Execute(TowerSpot spot)
     {
-        spot.tower.Evolve();
         if (spot.tower.CanEvolve())
         {
+            spot.tower.Evolve();
             spot.ChangeToSelecting();
         }
         else

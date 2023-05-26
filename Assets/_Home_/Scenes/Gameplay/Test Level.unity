@@ -237,6 +237,26 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 5a0564f8-5d27-455b-9fa6-6506db8c7c64
     m_ActionName: Gameplay/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 447a5334-bbfa-44ea-808a-52c547c494ac
+    m_ActionName: Gameplay/Back[/XInputControllerWindows/buttonEast,/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1176190430}
+        m_TargetAssemblyTypeName: BuyRoundState, Assembly-CSharp
+        m_MethodName: BeginWave
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5b655f1d-1af6-4229-9678-4d20bbd8ee27
+    m_ActionName: Gameplay/Start[/XInputControllerWindows/start,/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -938,7 +958,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176190426}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 003c25630808c7243847bd9149749434, type: 3}
   m_Name: 
@@ -1528,6 +1548,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7093269654169361799, guid: 58ac7bb6e5c014e4eb635436390a2955, type: 3}
+      propertyPath: sectorPrefab
+      value: 
+      objectReference: {fileID: 8974770393212972865, guid: 2bdb968390874eb4db216777131eab6a, type: 3}
     - target: {fileID: 7093269654828246126, guid: 58ac7bb6e5c014e4eb635436390a2955, type: 3}
       propertyPath: m_SortingLayer
       value: 7
@@ -1670,7 +1694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 128432091}
-  target: {fileID: 984790080}
+  _target: {fileID: 984790080}
   maxRange: 6
 --- !u!114 &1747770516
 MonoBehaviour:

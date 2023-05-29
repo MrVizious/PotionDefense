@@ -18,7 +18,16 @@ public class Enemy : Poolable, IDamageable
     // Public Data
     public EnemyData enemyData;
     public PathCreator path;
-    public float speedModifier = 1f;
+    private float _speedModifier = 1f;
+    public float speedModifier
+    {
+        get => _speedModifier;
+        set
+        {
+            Debug.Log("Setting speed modifier to: " + value);
+            _speedModifier = value;
+        }
+    }
     [ShowInInspector]
     public float currentHealth
     {

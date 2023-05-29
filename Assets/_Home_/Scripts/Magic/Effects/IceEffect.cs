@@ -5,19 +5,38 @@ using Sirenix.OdinInspector;
 
 public class IceEffect : Effect
 {
-    public float speedModifier = 0.75f;
-    [Button]
-    public override void Begin()
+    public override void Begin(TowerData newData)
     {
-        base.Begin();
+        base.Begin(newData);
         if (enemy == null) return;
-        enemy.speedModifier = speedModifier;
+        enemy.speedModifier = data.effectSpeedModifier;
     }
 
-    [Button]
     public override void End()
     {
-        enemy.speedModifier = 1f;
+        IceEffect[] iceEffects = GetComponents<IceEffect>();
+        if (iceEffects.Length > 1)
+        {
+            foreach (IceEffect iceEffect in iceEffects)
+            {
+                if (iceEffect != this)
+                {
+                    enemy.speedModifier = iceEffect.data.effectSpeedModifier;
+                }
+            }
+        }
+        else if (iceEffects.Length == 1)
+        {
+            if (iceEffects[0] != this)
+            {
+                enemy.speedModifier = iceEffects[0].data.effectSpeedModifier;
+            }
+            else enemy.speedModifier = 1f;
+        }
+        else
+        {
+            enemy.speedModifier = 1f;
+        }
         base.End();
     }
 }

@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using TypeReferences;
 using UnityEngine;
 
 public class IceModifier : ProjectileModifier
 {
+    protected override TypeReference effectType => typeof(IceEffect);
 
     public override void OnAcquire()
     {
@@ -16,15 +18,16 @@ public class IceModifier : ProjectileModifier
     }
     public override void OnHit(Enemy enemy)
     {
-        base.OnHit(enemy);
-
-        // Stops any previous slowing effects to the enemy
-        enemy.gameObject.GetComponent<IceEffect>()?.End();
-        // Adds the new slowing effect
-        IceEffect slowEffect = enemy.gameObject.AddComponent<IceEffect>();
-        slowEffect.speedModifier = data.effectSpeedModifier;
-        slowEffect.durationInSeconds = data.effectDurationInSeconds;
-        slowEffect.Begin();
+        if (enemy == null) return;
+        FireEffect currentFireEffect = enemy.GetComponent<FireEffect>();
+        if (currentFireEffect == null)
+        {
+            base.OnHit(enemy);
+        }
+        else
+        {
+            Destroy(currentFireEffect);
+        }
     }
 
     public override void End()

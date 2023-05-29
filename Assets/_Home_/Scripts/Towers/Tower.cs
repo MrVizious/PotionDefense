@@ -68,6 +68,7 @@ public class Tower : MonoBehaviour
         if (currentModifier != null)
         {
             Destroy(currentModifier);
+            Debug.Log("Adding same component");
             projectile.AddComponent(data.projectileModifierType);
             return;
         }

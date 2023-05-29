@@ -5,22 +5,20 @@ using Sirenix.OdinInspector;
 
 public class FireEffect : Effect
 {
-    public float damagePerTick = 2f;
-    public float secondsPerTick = 0.5f;
     private float lastDamagedTickTime = 0;
 
-    public override void Begin()
+    public override void Begin(TowerData data)
     {
-        base.Begin();
-        enemy?.Damage(damagePerTick);
+        base.Begin(data);
+        enemy?.Damage(data.effectDamageModifier);
         lastDamagedTickTime = Time.time;
     }
     private void Update()
     {
-        if (Time.time >= lastDamagedTickTime + secondsPerTick)
+        if (Time.time >= lastDamagedTickTime + data.effectChance)
         {
-            lastDamagedTickTime += secondsPerTick;
-            enemy?.Damage(damagePerTick);
+            lastDamagedTickTime += data.effectChance;
+            enemy?.Damage(data.effectChance);
         }
     }
 

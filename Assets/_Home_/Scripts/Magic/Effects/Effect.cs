@@ -4,8 +4,7 @@ using UnityEngine;
 
 public abstract class Effect : MonoBehaviour
 {
-    public float durationInSeconds = -1f;
-    public int level = 1;
+    protected TowerData data;
     protected Enemy enemy;
     protected Coroutine endEffectCoroutine;
     protected void OnEnable()
@@ -13,14 +12,15 @@ public abstract class Effect : MonoBehaviour
         enemy = GetComponent<Enemy>();
     }
 
-    public virtual void Begin()
+    public virtual void Begin(TowerData newData)
     {
+        data = newData;
         if (enemy == null) return;
         if (!enemy.isActiveAndEnabled) return;
         enemy.onDie += End;
-        if (durationInSeconds > 0f)
+        if (newData.effectDurationInSeconds > 0f)
         {
-            endEffectCoroutine = StartCoroutine(EndEffectCountdown(durationInSeconds));
+            endEffectCoroutine = StartCoroutine(EndEffectCountdown(newData.effectDurationInSeconds));
         }
     }
 

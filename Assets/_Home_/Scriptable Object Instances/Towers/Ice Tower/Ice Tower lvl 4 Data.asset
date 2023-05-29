@@ -18,6 +18,10 @@ MonoBehaviour:
     _typeNameAndAssembly: IceModifier, Assembly-CSharp
     _suppressLogs: 0
   maxHealth: 40
-  range: 5
+  range: 3
   cost: 50
+  effectChance: 1
+  effectDamageModifier: 1
+  effectSpeedModifier: 0.5
+  effectDurationInSeconds: 1.5
   nextLevel: {fileID: 0}

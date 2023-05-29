@@ -61,8 +61,10 @@ public class Tower : MonoBehaviour
         if (projectile == null) return;
         if (data.projectileModifierType == null) return;
 
+
         // If the current modifier type is already in the projectile, substitute it
-        ProjectileModifier currentModifier = (ProjectileModifier)projectile.GetComponent(data.projectileModifierType);
+        ProjectileModifier currentModifier =
+            (ProjectileModifier)projectile.GetComponent(data.projectileModifierType);
         if (currentModifier != null)
         {
             Destroy(currentModifier);
@@ -92,10 +94,9 @@ public class Tower : MonoBehaviour
             }
         }
 
-        if (projectile.gameObject.layer.Equals(LayerMask.NameToLayer("PlayerProjectiles")))
-        {
-            projectile.AddComponent(data.projectileModifierType);
-        }
+        ProjectileModifier newModifier =
+            (ProjectileModifier)projectile.AddComponent(data.projectileModifierType);
+        newModifier.data = data;
 
     }
 }

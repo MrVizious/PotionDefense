@@ -7,8 +7,12 @@ public class IceModifier : ProjectileModifier
 
     public override void OnAcquire()
     {
+        if (!projectile.gameObject.layer.Equals(LayerMask.NameToLayer("PlayerProjectiles")))
+        {
+            Destroy(this);
+        }
         base.OnAcquire();
-        projectile.speedModifier = 0.5f;
+        projectile.speedModifier = data.effectSpeedModifier;
     }
     public override void OnHit(Enemy enemy)
     {
@@ -18,8 +22,8 @@ public class IceModifier : ProjectileModifier
         enemy.gameObject.GetComponent<IceEffect>()?.End();
         // Adds the new slowing effect
         IceEffect slowEffect = enemy.gameObject.AddComponent<IceEffect>();
-        slowEffect.speedModifier = 0.2f;
-        slowEffect.durationInSeconds = 7f;
+        slowEffect.speedModifier = data.effectSpeedModifier;
+        slowEffect.durationInSeconds = data.effectDurationInSeconds;
         slowEffect.Begin();
     }
 

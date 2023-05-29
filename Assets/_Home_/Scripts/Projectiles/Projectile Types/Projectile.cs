@@ -15,4 +15,15 @@ public abstract class Projectile : Poolable
         damageModifier = 1f;
     }
     public abstract void OnCollisionEnter2D(Collision2D other);
+
+    public override void OnPoolRelease()
+    {
+        base.OnPoolRelease();
+        ProjectileModifier[] projectileModifiers = GetComponents<ProjectileModifier>();
+        foreach (ProjectileModifier projectileModifier in projectileModifiers)
+        {
+            Destroy(projectileModifier);
+        }
+    }
+
 }

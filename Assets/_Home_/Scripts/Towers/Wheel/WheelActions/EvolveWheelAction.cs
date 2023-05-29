@@ -15,9 +15,6 @@ public class EvolveWheelAction : OptionsWheelAction
             spot.tower.Evolve();
             spot.ChangeToSelecting();
         }
-        else
-        {
-            spot.ChangeToPrompt();
-        }
+        if (!spot.tower.CanEvolve()) spot.ChangeToPrompt();
     }
 }

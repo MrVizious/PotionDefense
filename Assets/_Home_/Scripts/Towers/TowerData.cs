@@ -11,6 +11,11 @@ public class TowerData : ScriptableObject
     public float maxHealth;
     public float range;
     public float cost;
+    [Range(0f, 1f)]
+    public float effectChance = 1f;
+    public float effectDamageModifier = 1.0f;
+    public float effectSpeedModifier = 1f;
+    public float effectDurationInSeconds = 0f;
     public TowerData nextLevel;
 
 }

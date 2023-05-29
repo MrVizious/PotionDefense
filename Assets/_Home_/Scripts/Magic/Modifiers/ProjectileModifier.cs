@@ -5,15 +5,17 @@ using UnityEngine;
 public abstract class ProjectileModifier : MonoBehaviour
 {
     protected Projectile projectile;
+    public TowerData data;
     protected void OnEnable()
     {
         projectile = GetComponent<Projectile>();
     }
 
-    protected virtual void Start()
+    protected void Start()
     {
         OnAcquire();
     }
+
     public virtual void OnAcquire() { }
     public virtual void OnHit(Enemy enemy)
     {

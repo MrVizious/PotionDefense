@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf38cc38870b5e74a8dc1af71a3b3a13, type: 3}
+  m_Name: Shield Tower lvl 1 Data
+  m_EditorClassIdentifier: 
+  projectileModifierType:
+    GuidAssignmentFailed: 0
+    GUID: 8b9866569d4e4a84d96f444900e7f14b
+    _typeNameAndAssembly: ShieldModifier, Assembly-CSharp
+    _suppressLogs: 0
+  maxHealth: 10
+  range: 2
+  cost: 5
+  effectChance: 0.1
+  effectDamageModifier: 1
+  effectSpeedModifier: 1
+  effectDurationInSeconds: 0
+  nextLevel: {fileID: 11400000, guid: fceabe7bc9e7965458da6d31ed98d8ac, type: 2}

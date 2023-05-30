@@ -17,5 +17,5 @@ public class TowerData : ScriptableObject
     public float effectSpeedModifier = 1f;
     public float effectDurationInSeconds = 0f;
     public TowerData nextLevel;
-
+    public Color color;
 }

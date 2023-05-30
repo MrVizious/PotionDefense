@@ -124,6 +124,7 @@ public class TowerSpot : MonoBehaviour
             wheel.AddAction(typeof(BuyFireTowerWheelAction));
             wheel.AddAction(typeof(BuyShieldTowerWheelAction));
             wheel.AddAction(typeof(BuyEarthTowerWheelAction));
+            wheel.AddAction(typeof(BuyElectricityTowerWheelAction));
         }
         wheel.RenderSectors();
     }

@@ -25,3 +25,4 @@ MonoBehaviour:
   effectSpeedModifier: 1
   effectDurationInSeconds: 0
   nextLevel: {fileID: 11400000, guid: fbf656d03b3ea564298a7cce46563b5a, type: 2}
+  color: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 0.827451}

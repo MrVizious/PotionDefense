@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Effect : MonoBehaviour
 {
-    protected TowerData data;
+    public TowerData data;
     protected Enemy enemy;
     protected Coroutine endEffectCoroutine;
     protected void OnEnable()

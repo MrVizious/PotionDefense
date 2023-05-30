@@ -4,7 +4,6 @@ using UnityEngine;
 using ExtensionMethods;
 using Sirenix.OdinInspector;
 using System.Linq;
-using TypeReferences;
 
 public class Tower : MonoBehaviour
 {
@@ -48,11 +47,16 @@ public class Tower : MonoBehaviour
     private void UpdateRadius()
     {
         if (data == null) return;
-        SetRadius(data.range);
+        SetRadiusSize(data.range);
+        SetRadiusColor(data.color);
     }
-    private void SetRadius(float r)
+    private void SetRadiusSize(float r)
     {
         radiusRenderer.transform.localScale = Vector3.one * r * 2;
+    }
+    private void SetRadiusColor(Color c)
+    {
+        radiusRenderer.color = c.WithAlpha(0.3f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

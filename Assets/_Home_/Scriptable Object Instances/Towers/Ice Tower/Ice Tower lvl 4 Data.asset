@@ -25,3 +25,4 @@ MonoBehaviour:
   effectSpeedModifier: 0.5
   effectDurationInSeconds: 3
   nextLevel: {fileID: 0}
+  color: {r: 0, g: 1, b: 0.8463371, a: 0.7019608}

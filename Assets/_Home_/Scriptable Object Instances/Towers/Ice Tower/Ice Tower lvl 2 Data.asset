@@ -23,5 +23,5 @@ MonoBehaviour:
   effectChance: 1
   effectDamageModifier: 1
   effectSpeedModifier: 0.7
-  effectDurationInSeconds: 0.75
+  effectDurationInSeconds: 1.5
   nextLevel: {fileID: 11400000, guid: d2c9f4e8b48167a4fa5081f678295c21, type: 2}

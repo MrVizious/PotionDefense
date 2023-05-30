@@ -28,15 +28,14 @@ public abstract class ProjectileModifier : MonoBehaviour
         if (!enemy.gameObject.activeInHierarchy) return;
         if (effectType == null) return;
 
-        // Stops any previous slowing effects to the enemy
+        // Stops any previous active effect of the type to the enemy
         Effect currentEffect = (Effect)enemy.gameObject.GetComponent(effectType);
         if (currentEffect != null)
         {
             Destroy(currentEffect);
-            Debug.Log("Removing current effect");
         }
 
-        // Adds the new slowing effect
+        // Adds the new effect
         Effect newEffect = (Effect)enemy.gameObject.AddComponent(effectType);
         newEffect.Begin(data);
     }

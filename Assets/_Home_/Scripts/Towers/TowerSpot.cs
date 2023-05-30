@@ -123,6 +123,7 @@ public class TowerSpot : MonoBehaviour
             wheel.AddAction(typeof(BuyIceTowerWheelAction));
             wheel.AddAction(typeof(BuyFireTowerWheelAction));
             wheel.AddAction(typeof(BuyShieldTowerWheelAction));
+            wheel.AddAction(typeof(BuyEarthTowerWheelAction));
         }
         wheel.RenderSectors();
     }

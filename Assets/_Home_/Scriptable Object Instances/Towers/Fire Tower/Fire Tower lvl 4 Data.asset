@@ -20,4 +20,8 @@ MonoBehaviour:
   maxHealth: 40
   range: 5
   cost: 50
+  effectChance: 0.2
+  effectDamageModifier: 3
+  effectSpeedModifier: 1
+  effectDurationInSeconds: 5
   nextLevel: {fileID: 0}

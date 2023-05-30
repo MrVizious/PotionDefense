@@ -85,7 +85,7 @@ public class Tower : MonoBehaviour
         }
 
         // Fire neutralizes ice
-        if (data.projectileModifierType.Type == typeof(FireModifier))
+        else if (data.projectileModifierType.Type == typeof(FireModifier))
         {
             IceModifier iceModifier = projectile.GetComponent<IceModifier>();
             if (iceModifier != null)
@@ -94,6 +94,7 @@ public class Tower : MonoBehaviour
                 return;
             }
         }
+
 
         ProjectileModifier newModifier =
             (ProjectileModifier)projectile.AddComponent(data.projectileModifierType);

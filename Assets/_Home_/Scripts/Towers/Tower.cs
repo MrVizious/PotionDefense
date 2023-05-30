@@ -99,7 +99,30 @@ public class Tower : MonoBehaviour
             }
         }
 
+        // Earth neutralizes electricity
+        if (data.projectileModifierType.Type == typeof(EarthModifier))
+        {
+            ElectricityModifier electricityModifier = projectile.GetComponent<ElectricityModifier>();
+            if (electricityModifier != null)
+            {
+                Destroy(electricityModifier);
+                return;
+            }
+        }
 
+        // Electricity neutralizes earth
+        else if (data.projectileModifierType.Type == typeof(ElectricityModifier))
+        {
+            EarthModifier earthModifier = projectile.GetComponent<EarthModifier>();
+            if (earthModifier != null)
+            {
+                Destroy(earthModifier);
+                return;
+            }
+        }
+
+
+        if (projectile.gameObject.layer.Equals(LayerMask.NameToLayer("EnemiesProjectiles"))) return;
         ProjectileModifier newModifier =
             (ProjectileModifier)projectile.AddComponent(data.projectileModifierType);
         newModifier.data = data;
